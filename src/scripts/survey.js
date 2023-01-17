@@ -7,6 +7,7 @@ const header = document.querySelector('.position-div');
 const tabs = document.querySelectorAll('tab');
 
 const selectBrand = document.getElementById('brands');
+const selectCPU = document.getElementById('cpus');
 
 // adding options to team and position select inputs
 fetch("https://pcfy.redberryinternship.ge/api/teams")
@@ -54,6 +55,19 @@ fetch("https://pcfy.redberryinternship.ge/api/brands")
         });
     })
     .catch(error => console.log(error));
+
+fetch("https://pcfy.redberryinternship.ge/api/cpus")
+.then(res => res.json())
+.then(res => {
+    res.data.forEach(el => {
+        const option = document.createElement('option');
+        option.value = el.id;
+        option.text = el.name;
+        selectCPU.appendChild(option);
+    });
+})
+.catch(error => console.log(error));
+
 
 
 function changeTabs() {
