@@ -90,8 +90,8 @@ form {
 }
 
 .upload-btn {
-    width: 400px;
-    height: 400px;
+    width: 358px;
+    height: 244px;
     border-radius: 8px;
     border: 2px dashed #4386A9;
     background-color: var(--background-color);
