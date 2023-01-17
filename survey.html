@@ -23,43 +23,52 @@
     <main>
         <form action="">
 
-            <div class="form-inputs">
-                <label for="name">სახელი</label>
-                <input type="text" name="name" id="name" placeholder="გრიშა" required minlength="2" pattern="[ა-ჰ]+" title="  ">
-                <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+            <div class="tab">
+                <div class="form-inputs">
+                    <label for="name">სახელი</label>
+                    <input type="text" name="name" id="name" placeholder="გრიშა" minlength="2" pattern="[ა-ჰ]+" title="  ">
+                    <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+                </div>
+    
+                <div class="form-inputs">
+                    <label for="lastName">გვარი</label>
+                    <input type="text" name="lastName" id="lastName" placeholder="ბაგრატიონი"  minlength="2" pattern="[ა-ჰ]+" title="  ">
+                    <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+                </div>
+    
+                <div class="form-inputs">
+                    <select name="team" id="team">
+                        <option value="">თიმი</option>
+                    </select>
+                </div>
+    
+                <div class="form-inputs">
+                    <select name="position" id="position" disabled>
+                        <option value="">პოზიცია</option>
+                    </select>
+                </div>
+    
+                <div class="form-inputs">
+                    <label for="email">მეილი</label>
+                    <input type="email" name="email" id="email" placeholder="ana@redberry.ge" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry\.ge$">
+                    <span class="info-span">უნდა მთავრდებოდეს @redberry.ge-ით</span>
+                </div>
+    
+                <div class="form-inputs">
+                    <label for="number">ტელეფონის ნომერი</label>
+                    <input type="text" name="number" id="number" placeholder="+995 599 999 999" pattern="/^(\+?995)?\d{9}$/">
+                    <span class="info-span">ქართული მობ-ნომრის ფორმატი</span>
+                </div>
             </div>
+            
+            <div class="tab">
 
-            <div class="form-inputs">
-                <label for="lastName">გვარი</label>
-                <input type="text" name="lastName" id="lastName" placeholder="ბაგრატიონი">
-                <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
             </div>
-
-            <div class="form-inputs">
-                <select name="team" id="team">
-                    <option value="">თიმი</option>
-                </select>
+            
+            <div class="row-ctn">
+                <button class="light-blue prev-btn">უკან</button>
+                <button class="light-blue next-btn">შემდეგი</button>
             </div>
-
-            <div class="form-inputs">
-                <select name="position" id="position" disabled>
-                    <option value="">პოზიცია</option>
-                </select>
-            </div>
-
-            <div class="form-inputs">
-                <label for="email">მეილის</label>
-                <input type="email" name="email" id="email" placeholder="ana@redberry.ge" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry\.ge$">
-                <span class="info-span">უნდა მთავრდებოდეს @redberry.ge-ით</span>
-            </div>
-
-            <div class="form-inputs">
-                <label for="number">ტელეფონის ნომერი</label>
-                <input type="text" name="number" id="number" placeholder="+995 599 999 999" pattern="/^(\+?995)?\d{9}$/">
-                <span class="info-span">ქართული მობ-ნომრის ფორმატი</span>
-            </div>
-
-            <button class="light-blue next-btn">შემდეგი</button>
         </form>
     </main>
 

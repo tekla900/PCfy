@@ -7,6 +7,7 @@
     --select: #EBEBEB;
     --medium-blue: #317AD0;
     --dark-blue: #1A5DAB;
+    --error: #E52F2F;
 }
 
 * {
@@ -93,6 +94,15 @@ input::placeholder {
     font-size: 16px;
 }
 
+input:focus {
+    background: rgba(43, 75, 242, 0.06);
+    border-color: #6499FF
+}
+
+input:invalid {
+    border-color: #E52F2F;
+}
+
 select {
     height: 60px;
     width: 358px;
@@ -113,3 +123,7 @@ select {
 }
 
 
+.error {
+    border-color: var(--error);
+    color: var(--error);
+}

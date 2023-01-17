@@ -40,7 +40,7 @@ form {
     width: 358px;
     display: flex;
     flex-direction: column;
-    gap: 23px;
+    gap: 43px;
     margin: 40px auto;
 }
 
@@ -59,4 +59,32 @@ form {
 .next-btn {
     width: 132px;
     align-self: flex-end;
+}
+
+.row-ctn {
+    display: flex;
+    justify-content: space-between;
+}
+
+.prev-btn {
+    width: 132px;
+    background-color: white;
+    color: #62A1EB;
+    visibility: hidden;
+}
+
+.prev-btn:hover {
+    background-color: white;
+    color: #317AD0;
+}
+
+.prev-btn:active  {
+    background-color: white;
+    color: #1A5DAB;
+}
+
+.tab {
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
 }
