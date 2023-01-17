@@ -6,6 +6,7 @@
     --input-blue: #8AC0E2;
     --select: #EBEBEB;
     --medium-blue: #317AD0;
+    --dark-blue: #1A5DAB;
 }
 
 * {
@@ -59,6 +60,10 @@ button {
 
 button:hover {
     background-color: var(--medium-blue);
+}
+
+button:active {
+    background-color: var(--dark-blue);
 }
   
 .light-blue {
