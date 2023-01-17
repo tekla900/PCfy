@@ -6,6 +6,8 @@ const prevBtn = document.querySelector('.prev-btn');
 const header = document.querySelector('.position-div');
 const tabs = document.querySelectorAll('tab');
 
+const selectBrand = document.getElementById('brands');
+
 // adding options to team and position select inputs
 fetch("https://pcfy.redberryinternship.ge/api/teams")
     .then(res => res.json())
@@ -40,24 +42,19 @@ selectTeam.addEventListener('change', () => {
     });
 });
 
+// adding options to brand and cpu select inputs
+fetch("https://pcfy.redberryinternship.ge/api/brands")
+    .then(res => res.json())
+    .then(res => {
+        res.data.forEach(el => {
+            const option = document.createElement('option');
+            option.value = el.id;
+            option.text = el.name;
+            selectBrand.appendChild(option);
+        });
+    })
+    .catch(error => console.log(error));
 
-
-// validation
-
-// form.addEventListener("submit", (event) => {
-//     event.preventDefault();
-//     const email = document.getElementById("email").value;
-//     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry\.ge$/;
-//     if (!emailRegex.test(email)) {
-//         alert("Please enter a valid gmail address");
-//     } else {
-//         //submit form
-//     }
-// });
-
-// function error(element) {
-
-// }
 
 function changeTabs() {
     currentTab = 0; 
@@ -75,6 +72,9 @@ function changeTabs() {
         nextBtn.textContent = 'დამახსოვრება'
     }
 }
+
+
+// validation
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
