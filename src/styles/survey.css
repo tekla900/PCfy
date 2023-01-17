@@ -123,3 +123,25 @@ form {
 #camera {
     color: #79c6ee;
 }
+
+.checkboxes input {
+    height: 20px;
+    width: 20px;
+}
+
+label[for=SSD], label[for=HDD]{
+    font-size: 16px;
+    font-weight: 400;
+}
+
+.checkboxes {
+    margin-top: 26px;
+    display: flex;
+    gap: 60px;
+}
+
+.checkboxes div {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+}
