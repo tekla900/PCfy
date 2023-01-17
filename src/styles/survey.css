@@ -55,3 +55,8 @@ form {
     line-height: 21px;
     color: var(--black500);
 }
+
+.next-btn {
+    width: 132px;
+    align-self: flex-end;
+}

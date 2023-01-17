@@ -47,7 +47,19 @@
                 </select>
             </div>
 
-            <button>click</button>
+            <div class="form-inputs">
+                <label for="email">მეილის</label>
+                <input type="email" name="email" id="email" placeholder="ana@redberry.ge" pattern="^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry\.ge$">
+                <span class="info-span">უნდა მთავრდებოდეს @redberry.ge-ით</span>
+            </div>
+
+            <div class="form-inputs">
+                <label for="number">ტელეფონის ნომერი</label>
+                <input type="text" name="number" id="number" placeholder="+995 599 999 999" pattern="/^(\+?995)?\d{9}$/">
+                <span class="info-span">ქართული მობ-ნომრის ფორმატი</span>
+            </div>
+
+            <button class="light-blue next-btn">შემდეგი</button>
         </form>
     </main>
 

@@ -1,5 +1,6 @@
 const selectTeam = document.getElementById('team');
 const selectPosition = document.getElementById('position');
+const form = document.querySelector("form");
 
 // adding options to team and position select inputs
 fetch("https://pcfy.redberryinternship.ge/api/teams")
@@ -37,3 +38,19 @@ selectTeam.addEventListener('change', () => {
 
 
 
+// validation
+
+// form.addEventListener("submit", (event) => {
+//     event.preventDefault();
+//     const email = document.getElementById("email").value;
+//     const emailRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@redberry\.ge$/;
+//     if (!emailRegex.test(email)) {
+//         alert("Please enter a valid gmail address");
+//     } else {
+//         //submit form
+//     }
+// });
+
+// function error(element) {
+
+// }
