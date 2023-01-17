@@ -1,6 +1,11 @@
 :root {
     --light-blue: #62A1EB;
+    --helveticaFont: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    --black: #232323;
+    --black500: #2E2E2E;
+    --input-blue: #8AC0E2;
 }
+
 * {
     margin: 0;
     padding: 0;
@@ -8,11 +13,23 @@
 }
 
 h3 {
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-family: var(--helveticaFont);
     font-size: 16px;
     font-weight: 700;
     line-height: 20px;
     letter-spacing: 0em;
+    color: var(--black);
+}
+
+@media only screen and (min-width: 390px) and (max-width: 1919px) {
+    h3 {
+        font-size: 20px;
+    }
+}
+
+span {
+    font-family: var(--helveticaFont);
+    font-size: 14px;
 }
 
 button {
@@ -21,7 +38,7 @@ button {
     border: none;
     border-radius: 8px;
     padding: 18px 60px 18px 60px;
-    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;;
+    font-family: var(--helveticaFont);    
     font-size: 20px;
     font-weight: 500;
     line-height: 24px;
@@ -31,7 +48,6 @@ button {
     /* text-align: left; */
 }
 
-/* styles for screens between 390px and 1919px */
 @media only screen and (min-width: 390px) and (max-width: 1919px) {
     button {
         width: 387px;
@@ -40,4 +56,27 @@ button {
   
 .light-blue {
     background-color: var(--light-blue);
+}
+
+label {
+    font-family: var(--helveticaFont);
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    text-align: left;
+    color: #000;    
+}
+
+input {
+    height: 60px;
+    width: 358px;
+    border-radius: 8px;
+    border: 1.8px solid var(--input-blue);
+    padding: 20px 16px;
+}
+
+input::placeholder {
+    color: rgba(0, 0, 0, 0.6);
+    font-weight: 400;
+    font-size: 16px;
 }
