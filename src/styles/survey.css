@@ -1,0 +1,29 @@
+:root {
+    --background-color: #F6F6F6;
+    --arrows: #797979;
+}
+
+#survey-header {
+    width: 100%;
+    background-color: var(--background-color);
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.position-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-div {
+    position: absolute;
+    top: 34px;
+    left: 16px;
+    color: var(--arrows);
+    cursor: pointer;
+}

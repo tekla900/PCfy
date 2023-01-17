@@ -1,5 +1,5 @@
 function addNote() {
-    location.href = "http://www.youtube.com";
+    location.href = "survey.html";
 }
 
 function seeNotes() {
