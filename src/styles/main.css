@@ -4,6 +4,7 @@
     --black: #232323;
     --black500: #2E2E2E;
     --input-blue: #8AC0E2;
+    --select: #EBEBEB;
 }
 
 * {
@@ -80,3 +81,19 @@ input::placeholder {
     font-weight: 400;
     font-size: 16px;
 }
+
+select {
+    height: 60px;
+    width: 358px;
+    border-radius: 8px;
+    border: none;
+    padding: 20px 16px;
+    background-color: var(--select);
+}
+
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    select {
+        width: 878px;
+    }
+}
+
