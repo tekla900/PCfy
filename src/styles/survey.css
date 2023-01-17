@@ -88,3 +88,38 @@ form {
     flex-direction: column;
     gap: 23px;
 }
+
+.upload-btn {
+    width: 400px;
+    height: 400px;
+    border-radius: 8px;
+    border: 2px dashed #4386A9;
+    background-color: var(--background-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font-size: 1.2em;
+    cursor: pointer;
+
+}
+
+.file-div {
+    width: 145px;
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-div h3 {
+    line-height: 26px;
+    text-align: center;
+    color: #4386A9;
+    font-weight: 400;
+}
+
+#camera {
+    color: #79c6ee;
+}
