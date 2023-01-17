@@ -5,6 +5,7 @@
     --black500: #2E2E2E;
     --input-blue: #8AC0E2;
     --select: #EBEBEB;
+    --medium-blue: #317AD0;
 }
 
 * {
@@ -55,6 +56,10 @@ button {
         width: 387px;
     }
 }
+
+button:hover {
+    background-color: var(--medium-blue);
+}
   
 .light-blue {
     background-color: var(--light-blue);
@@ -101,4 +106,5 @@ select {
         width: 878px;
     }
 }
+
 
