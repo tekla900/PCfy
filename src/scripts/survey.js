@@ -4,10 +4,12 @@ const form = document.querySelector('form');
 const nextBtn = document.querySelector('.next-btn');
 const prevBtn = document.querySelector('.prev-btn');
 const header = document.querySelector('.position-div');
-const tabs = document.querySelectorAll('tab');
+const tabs = document.querySelectorAll('.tab');
 
 const selectBrand = document.getElementById('brands');
 const selectCPU = document.getElementById('cpus');
+
+let currentTab = 0; 
 
 // adding options to team and position select inputs
 fetch("https://pcfy.redberryinternship.ge/api/teams")
@@ -71,7 +73,6 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
 
 
 function changeTabs() {
-    currentTab = 0; 
 
     if (currentTab == 1) {
         header.innerHTML = `
@@ -93,6 +94,9 @@ function changeTabs() {
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     validate();
+    currentTab+=1;
+    changeTabs();
+    console.log('clicked');
 })
 
 function validate() {
@@ -143,8 +147,8 @@ function validateNumber() {
     const numberLabel = document.querySelector('label[for="number"]');
     const numberInfo = document.querySelector('#number + .info-span');
 
-    const numberRegex = /^(\+?995)?\d{9}$/;
-
+    // const numberRegex = /^(+?995)?\s*\d{9}$/;
+    const numberRegex = /^\d{9}$/;
     if (!numberRegex.test(number.value)) {
         number.classList.add('error');
         numberLabel.classList.add('error');

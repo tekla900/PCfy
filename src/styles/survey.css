@@ -89,6 +89,10 @@ form {
     gap: 23px;
 }
 
+.second {
+    display: none;
+}
+
 .upload-btn {
     width: 358px;
     height: 244px;
@@ -129,7 +133,10 @@ form {
     width: 20px;
 }
 
-label[for=SSD], label[for=HDD]{
+label[for=SSD], 
+label[for=HDD], 
+label[for=new],
+label[for=second-hand]{
     font-size: 16px;
     font-weight: 400;
 }
