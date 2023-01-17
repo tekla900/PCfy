@@ -88,6 +88,10 @@ select {
     border-radius: 8px;
     border: none;
     padding: 20px 16px;
+    font-size: 18px;
+    font-weight: 500;
+    line-height: 21px;
+    letter-spacing: 0.04em;
     background-color: var(--select);
 }
 
