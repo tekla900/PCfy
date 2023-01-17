@@ -1,0 +1,35 @@
+:root {
+    --light-blue: #62A1EB;
+}
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+button {
+    height: 60px;
+    width: 297px;
+    border: none;
+    border-radius: 8px;
+    padding: 18px 60px 18px 60px;
+    font-family: 'Helvetica Neue';
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 24px;
+    letter-spacing: 0em;
+    color: white;
+    cursor: pointer;
+    /* text-align: left; */
+}
+
+/* styles for screens between 390px and 1919px */
+@media only screen and (min-width: 390px) and (max-width: 1919px) {
+    button {
+        width: 387px;
+    }
+}
+  
+.light-blue {
+    background-color: var(--light-blue);
+}
