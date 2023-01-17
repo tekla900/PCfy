@@ -38,6 +38,9 @@
 
 form {
     width: 358px;
+    display: flex;
+    flex-direction: column;
+    gap: 23px;
     margin: 40px auto;
 }
 
