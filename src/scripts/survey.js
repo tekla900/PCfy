@@ -93,21 +93,28 @@ function changeTabs() {
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (validate()) {
-        currentTab+=1;
+    if (validateFirstTab()) {
+        currentTab = 1;
         changeTabs();
     }
-    
-    console.log('clicked');
 })
 
-function validate() {
-    validateNames('name');
-    validateNames('lastName');
-    validateSelects(selectTeam);
-    validateSelects(selectPosition);
-    validateEmail();
-    validateNumber();
+function validateFirstTab() {
+    if(validateNames('name')) {
+
+        if(validateNames('lastName')) {
+            if(validateSelects(selectTeam)) {
+                if(validateSelects(selectPosition)) {
+                    if(validateEmail()) {
+                        if(validateNumber()) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false;
 }
 
 function validateNames(name) {
@@ -121,12 +128,20 @@ function validateNames(name) {
         input.classList.add('error');
         label.classList.add('error');
         span.classList.add('error');
-    }    
+
+        return false;
+    } else {
+        return true;
+    }
 }
 
 function validateSelects(select) {
     if (select.value === '') {
         select.classList.add('error');
+
+        return false;
+    } else {
+        return true;
     }
 }
 
@@ -141,7 +156,11 @@ function validateEmail() {
         email.classList.add('error');
         emailLabel.classList.add('error');
         emailInfo.classList.add('error');
-    }
+
+        return false;
+    } else {
+        return true;
+    }   
 }
 
 function validateNumber() {
@@ -155,5 +174,9 @@ function validateNumber() {
         number.classList.add('error');
         numberLabel.classList.add('error');
         numberInfo.classList.add('error');
+
+        return false;
+    } else {
+        return true;
     }
 }
