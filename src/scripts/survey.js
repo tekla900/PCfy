@@ -117,10 +117,10 @@ function validateFirstTab() {
     return false;
 }
 
-function validateNames(name) {
-    const input = document.getElementById(name);
-    const label = document.querySelector(`label[for="${name}"]`);
-    const span = document.querySelector(`#${name} + .info-span`);
+function validateNames(id) {
+    const input = document.getElementById(id);
+    const label = document.querySelector(`label[for="${id}"]`);
+    const span = document.querySelector(`#${id} + .info-span`);
 
     const regex = /^[\u10A0-\u10FF]{2,}$/;
 
@@ -174,6 +174,42 @@ function validateNumber() {
         number.classList.add('error');
         numberLabel.classList.add('error');
         numberInfo.classList.add('error');
+
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validateLaptopName() {
+    const input = document.getElementById('laptopName');
+    const label = document.querySelector(`label[for="${'laptopName'}"]`);
+    const span = document.querySelector(`#${'laptopName'} + .info-span`);
+
+    const regex = /[a-zA-Z0-9!@#$%^&*()_+=]+/;
+
+    if(!regex.test(input.value)) {
+        input.classList.add('error');
+        label.classList.add('error');
+        span.classList.add('error');
+
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validateDigits(id) {
+    const input = document.getElementById(id);
+    const label = document.querySelector(`label[for="${id}"]`);
+    const span = document.querySelector(`#${id} + .info-span`);
+
+    const regex = /^[0-9]*$/;
+
+    if (!regex.test(input.value)) {
+        input.classList.add('error');
+        label.classList.add('error');
+        span.classList.add('error');
 
         return false;
     } else {
