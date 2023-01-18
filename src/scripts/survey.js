@@ -93,9 +93,11 @@ function changeTabs() {
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    validate();
-    currentTab+=1;
-    changeTabs();
+    if (validate()) {
+        currentTab+=1;
+        changeTabs();
+    }
+    
     console.log('clicked');
 })
 

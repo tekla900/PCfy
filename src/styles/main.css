@@ -122,7 +122,15 @@ select {
 }
 
 
-.error {
+input.error {
     border-color: var(--error);
+}
+
+label.error, span.error {
     color: var(--error);
 }
+
+select.error {
+    border: 1.8px solid var(--error);
+}
+
