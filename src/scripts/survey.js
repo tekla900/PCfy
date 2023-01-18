@@ -99,42 +99,6 @@ nextBtn.addEventListener('click', (e) => {
     }
 })
 
-function validateFirstTab() {
-    if(validateNames('name')) {
-
-        if(validateNames('lastName')) {
-            if(validateSelects(selectTeam)) {
-                if(validateSelects(selectPosition)) {
-                    if(validateEmail()) {
-                        if(validateNumber()) {
-                            return true;
-                        }
-                    }
-                }
-            }
-        }
-    }
-    return false;
-}
-
-function validateNames(id) {
-    const input = document.getElementById(id);
-    const label = document.querySelector(`label[for="${id}"]`);
-    const span = document.querySelector(`#${id} + .info-span`);
-
-    const regex = /^[\u10A0-\u10FF]{2,}$/;
-
-    if (!regex.test(input.value)) {
-        input.classList.add('error');
-        label.classList.add('error');
-        span.classList.add('error');
-
-        return false;
-    } else {
-        return true;
-    }
-}
-
 function validateSelects(select) {
     if (select.value === '') {
         select.classList.add('error');
@@ -145,41 +109,6 @@ function validateSelects(select) {
     }
 }
 
-function validateEmail() {
-    const email = document.querySelector('#email');
-    const emailLabel = document.querySelector('label[for="email"]');
-    const emailInfo = document.querySelector('#email + .info-span');
-    
-    const emailRegex = /^[^@]+@redberry.ge$/;
-
-    if (!emailRegex.test(email.value)) {
-        email.classList.add('error');
-        emailLabel.classList.add('error');
-        emailInfo.classList.add('error');
-
-        return false;
-    } else {
-        return true;
-    }   
-}
-
-function validateNumber() {
-    const number = document.querySelector('#number');
-    const numberLabel = document.querySelector('label[for="number"]');
-    const numberInfo = document.querySelector('#number + .info-span');
-
-    // const numberRegex = /^(+?995)?\s*\d{9}$/;
-    const numberRegex = /^\d{9}$/;
-    if (!numberRegex.test(number.value)) {
-        number.classList.add('error');
-        numberLabel.classList.add('error');
-        numberInfo.classList.add('error');
-
-        return false;
-    } else {
-        return true;
-    }
-}
 
 function validateLaptopName() {
     const input = document.getElementById('laptopName');
@@ -214,5 +143,37 @@ function validateDigits(id) {
         return false;
     } else {
         return true;
+    }
+}
+
+function validateInputs(id, regex) {
+    const input = document.getElementById(id);
+    const label = document.querySelector(`label[for="${id}"]`);
+    const span = document.querySelector(`#${id} + .info-span`);
+
+    if (!regex.test(input.value)) {
+        input.classList.add('error');
+        label.classList.add('error');
+        span.classList.add('error');
+
+        return false;
+    } else {
+        return true;
+    }
+}
+
+function validateFirstTab() {
+    if(validateInputs('name', /^[\u10A0-\u10FF]{2,}$/)) {
+        if(validateInputs('lastName', /^[\u10A0-\u10FF]{2,}$/)) {
+            if(validateSelects(selectTeam)) {
+                if(validateSelects(selectPosition)) {
+                    if(validateInputs('email', /^[^@]+@redberry.ge$/)) {
+                        if(validateInputs('number', /^\d{9}$/)) {
+                            return true;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
