@@ -23,11 +23,17 @@
     gap: 5px;
 }
 
+#laptop-header {
+    display: none;
+}
+
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
     .position-div {
         gap: 52px;
         width: 878px;
-        margin: 0 auto; 
+        margin: 0 auto;
+        flex-direction: row;
+        justify-content: center;
     }
 
     #position-span {
@@ -43,6 +49,10 @@
         background-color: #D9D9D9;
         display: grid;
         place-items: center;
+    }
+
+    #employee-header {
+        border-bottom: 2px solid #000;
     }
 }
 
@@ -108,9 +118,11 @@ form {
     align-self: flex-end;
 }
 
-.row-ctn {
-    display: flex;
-    justify-content: space-between;
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .row-ctn {
+        display: flex;
+        justify-content: space-between;
+    }
 }
 
 .prev-btn {
