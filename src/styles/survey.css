@@ -118,10 +118,21 @@ form {
     align-self: flex-end;
 }
 
+.row-ctn {
+    display: flex; 
+    flex-direction: column;
+}
+
+.button.row-ctn {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
     .row-ctn {
-        display: flex;
         justify-content: space-between;
+        flex-direction: row;
     }
 }
 
