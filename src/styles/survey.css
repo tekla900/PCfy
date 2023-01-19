@@ -15,11 +15,35 @@
     align-content: center;
 }
 
+
 .position-div {
     display: flex;
     flex-direction: column;
     align-items: center;
     gap: 5px;
+}
+
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .position-div {
+        gap: 52px;
+        width: 878px;
+        margin: 0 auto; 
+    }
+
+    #position-span {
+        display: none;
+    }
+
+    .btn-div {
+        height: 53px;
+        width: 53px;
+        left: 70px;
+        top: 53px;
+        border-radius: 50%;
+        background-color: #D9D9D9;
+        display: grid;
+        place-items: center;
+    }
 }
 
 .btn-div {
