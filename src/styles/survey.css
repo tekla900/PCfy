@@ -55,7 +55,7 @@ form {
         padding-bottom: 44px;
     }
 
-    .name-ctn {
+    .row-ctn {
         display: flex;
         justify-content: space-between;
     }
@@ -155,11 +155,15 @@ form {
     justify-content: center;
 }
 
-.file-div h3 {
+.file-div h3:nth-of-type(2) {
     line-height: 26px;
     text-align: center;
     color: #4386A9;
     font-weight: 400;
+}
+
+.file-div h3:nth-of-type(1) { 
+    display: none;
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
@@ -168,13 +172,28 @@ form {
         gap: 65px;
     }
     
-    .file-div h3 {
+
+    .file-div h3:nth-of-type(2) {
         background-color: #62A1EB;
         color: white;
         padding: 18px 60px;
         border-radius: 8px;
-        content: "ატვირთე";
     }
+
+    .file-div i {
+        display: none;
+    }
+
+    .file-div h3:nth-of-type(1) { 
+        display: block;
+        font-family: Helvetica Neue;
+        font-size: 20px;
+        font-weight: 500;
+        line-height: 38px;
+        text-align: center;
+        color: #4386A9;
+    }
+    
 }
 
 #camera {
@@ -204,6 +223,11 @@ label[for=second-hand]{
     display: flex;
     align-items: center;
     gap: 18px;
+}
+
+.flex-start {
+    justify-content: flex-start;
+    gap: 63px;
 }
 
 

@@ -103,8 +103,12 @@ input:invalid {
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
-    input#email, input#number {
+    .full-scr {
         width: 878px;
+    }
+
+    .third {
+        width: 277px;
     }
 }
 
@@ -122,7 +126,7 @@ select {
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
-    select {
+    .full-scr{
         width: 878px;
     }
 }
@@ -152,3 +156,8 @@ select.error {
     color: green;
     display: none;
 } */
+
+.center-align {
+    align-self: center;
+}
+
