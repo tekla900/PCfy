@@ -24,17 +24,20 @@
         <form action="">
 
             <div class="tab">
-                <div class="form-inputs">
-                    <label for="name">სახელი</label>
-                    <input type="text" name="name" id="name" placeholder="გრიშა" minlength="2" pattern="[ა-ჰ]+" title="  ">
-                    <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+                <div class="name-ctn">
+                    <div class="form-inputs">
+                        <label for="name">სახელი</label>
+                        <input type="text" name="name" id="name" placeholder="გრიშა" minlength="2" pattern="[ა-ჰ]+" title="  ">
+                        <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+                    </div>
+        
+                    <div class="form-inputs">
+                        <label for="lastName">გვარი</label>
+                        <input type="text" name="lastName" id="lastName" placeholder="ბაგრატიონი"  minlength="2" pattern="[ა-ჰ]+" title="  ">
+                        <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
+                    </div>
                 </div>
-    
-                <div class="form-inputs">
-                    <label for="lastName">გვარი</label>
-                    <input type="text" name="lastName" id="lastName" placeholder="ბაგრატიონი"  minlength="2" pattern="[ა-ჰ]+" title="  ">
-                    <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
-                </div>
+                
     
                 <div class="form-inputs">
                     <select name="team" id="team">
@@ -139,11 +142,13 @@
                     <label>ლეპტოპის მდგომარეობა</label>
                     <div class="checkboxes">
                         <div class="">
+                            <!-- <i class="fa-sharp fa-solid fa-circle-check fa-lg radio-check"></i> -->
                             <input type="radio" id="new" name="condition" value="new">
                             <label for="new">ახალი</label>
                         </div>
                         
                         <div class="">
+                            <!-- <i class="fa-sharp fa-solid fa-circle-check fa-lg radio-check"></i> -->
                             <input type="radio" id="second-hand" name="condition" value="second-hand">
                             <label for="second-hand">მეორადი</label>
                         </div>  
@@ -162,3 +167,5 @@
     <script src="./src/scripts/survey.js"></script>
 </body>
 </html>
+
+<!-- <i class="fa-sharp fa-solid fa-circle-check"></i> -->

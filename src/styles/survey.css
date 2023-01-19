@@ -42,7 +42,30 @@ form {
     flex-direction: column;
     gap: 43px;
     margin: 40px auto;
+    background-color: white;
 }
+
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    form {
+        width: 1225px;
+        gap: 95px;
+        margin: 0 auto;
+        border-radius: 18px;
+        padding-top: 96px;
+        padding-bottom: 44px;
+    }
+
+    .name-ctn {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    main {
+        background-color: var(--background-color);
+        padding-top: 27px;
+    }
+}
+
 
 .form-inputs {
     display: flex;
@@ -89,6 +112,14 @@ form {
     gap: 23px;
 }
 
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .tab {
+        gap: 52px;
+        width: 878px;
+        margin: 0 auto; 
+    }
+}
+
 .second {
     display: none;
 }
@@ -105,7 +136,14 @@ form {
     text-align: center;
     font-size: 1.2em;
     cursor: pointer;
+    margin: 0 auto; 
+}
 
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .upload-btn {
+        width: 878px;
+        height: 423px;
+    }
 }
 
 .file-div {
@@ -122,6 +160,21 @@ form {
     text-align: center;
     color: #4386A9;
     font-weight: 400;
+}
+
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .file-div {
+        width: 233px;
+        gap: 65px;
+    }
+    
+    .file-div h3 {
+        background-color: #62A1EB;
+        color: white;
+        padding: 18px 60px;
+        border-radius: 8px;
+        content: "ატვირთე";
+    }
 }
 
 #camera {
@@ -152,3 +205,5 @@ label[for=second-hand]{
     align-items: center;
     gap: 18px;
 }
+
+

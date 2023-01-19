@@ -10,6 +10,7 @@ const selectBrand = document.getElementById('brands');
 const selectCPU = document.getElementById('cpus');
 
 const fileInput = document.getElementById("file-input");
+const formElements = form.elements;
 
 let currentTab = 0; 
 
@@ -107,7 +108,7 @@ function showTabs() {
 
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    if (validateFirstTab()) {
+    // if (validateFirstTab()) {
         if(currentTab === 0) {
             currentTab = 1;
             showTabs();
@@ -115,7 +116,7 @@ nextBtn.addEventListener('click', (e) => {
             currentTab = 2;
             showTabs();
         }
-    }
+    // }
 })
 
 prevBtn.addEventListener('click', () => {
@@ -217,3 +218,56 @@ fileInput.addEventListener("change", function() {
 
 
 form.onsubmit = () => console.log('yay');
+
+
+var radios = document.querySelectorAll('input[name=condition]');
+var icons = document.querySelectorAll('#radio-check');
+for (var i = 0; i < radios.length; i++) {
+    radios[i].addEventListener('change', function() {
+        // for (var j = 0; j < icons.length; j++) {
+        //     icons[j].style.display = 'none';
+        // }
+        this.parentNode.querySelector('i').style.display = 'block';
+    });
+}
+
+for (let i = 0; i < formElements.length; i++) {
+    let element = formElements[i];
+    if (element.name) {
+      element.addEventListener("input", function() {
+        localStorage.setItem("formData", JSON.stringify(getFormData()));
+      });
+    }
+}
+
+// Retrieve form data from local storage and populate the form fields when the page is loaded
+window.addEventListener("load", function() {
+    let formData = JSON.parse(localStorage.getItem("formData"));
+    if (formData) {
+      populateForm(formData);
+    }
+});
+
+
+// Helper function to get the form data as an object
+
+function getFormData() {
+    let formData = {};
+    for (let i = 0; i < formElements.length; i++) {
+      let element = formElements[i];
+      if (element.name) {
+        formData[element.name] = element.value;
+      }
+    }
+    return formData;
+}
+    
+  
+// Helper function to populate the form fields with data
+function populateForm(formData) {
+    for (let key in formData) {
+      let element = document.getElementsByName(key)[0];
+      element.value = formData[key];
+    }
+}
+
