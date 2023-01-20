@@ -74,30 +74,56 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
 .catch(error => console.log(error));
 
 
+const employeeHeader = document.getElementById('employee-header');
+const laptopHeader = document.getElementById('laptop-header');
+const posSpan = document.getElementById('position-span');
+const posDiv = document.querySelector('.position-div');
 
 function showTabs() {
+    let flexDir = window.getComputedStyle(posDiv).flexDirection;
     if(currentTab === 0) {
-        header.innerHTML = `
-            <h3>თანამშრომლის ინფო</h3>
-            <span id="position-span">1/2</span>
-        `;
+        if (flexDir === "row") {
+            console.log("this doesn't work");
+            employeeHeader.style.display = 'block';
+            laptopHeader.style.display = 'block';
+        } else if (flexDir === "column") {
+            employeeHeader.style.display = 'block';
+            laptopHeader.style.display = 'none';
+        }
+        
+        posSpan.textContent = '1/2';
 
         tabs[0].style.display = 'flex';
         tabs[1].style.display = 'none';
 
         prevBtn.style.visibility = 'hidden';
-        nextBtn.textContent = 'შემდეგი' 
+        nextBtn.textContent = 'შემდეგი';
+
     } else if(currentTab === 1) {
-        header.innerHTML = `
-            <h3>ლეპტოპის მახასიათებლები</h3>
-            <span id='position-span'>2/2</span>
-        `;
+
+        if (flexDir === "row") {
+            employeeHeader.style.display = 'block';
+            laptopHeader.style.display = 'block';
+
+            employeeHeader.style.borderBottom = 'none';
+            laptopHeader.style.borderBottom = '2px solid #000'
+        } else if (flexDir === "column") {
+            employeeHeader.style.display = 'none';
+            laptopHeader.style.display = 'block';
+        }
+        
+
+        posSpan.textContent = '2/2';
 
         tabs[0].style.display = 'none';
         tabs[1].style.display = 'flex';
 
         prevBtn.style.visibility = 'visible';
-        nextBtn.textContent = 'დამახსოვრება'
+        nextBtn.textContent = 'დამახსოვრება';
+
+        
+        
+        nextBtn.type = "submit";
     } else if(currentTab === 2) {
         nextBtn.type = "submit";
     }
