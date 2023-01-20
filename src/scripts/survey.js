@@ -83,9 +83,11 @@ function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
     if(currentTab === 0) {
         if (flexDir === "row") {
-            console.log("this doesn't work");
             employeeHeader.style.display = 'block';
             laptopHeader.style.display = 'block';
+
+            employeeHeader.style.borderBottom = '2px solid #000';
+            laptopHeader.style.borderBottom = 'none'
         } else if (flexDir === "column") {
             employeeHeader.style.display = 'block';
             laptopHeader.style.display = 'none';
