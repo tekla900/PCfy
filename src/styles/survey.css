@@ -55,10 +55,12 @@
     #employee-header {
         padding-bottom: 15px;    
         border-bottom: 2px solid #000;
+        cursor: pointer;
     }
 
     #laptop-header {
         display: block;
+        cursor: pointer;
     }
 
 }

@@ -88,6 +88,21 @@ function showTabs() {
 
             employeeHeader.style.borderBottom = '2px solid #000';
             laptopHeader.style.borderBottom = 'none'
+
+            // console.log('eventamde');
+            // laptopHeader.addEventListener('click', () => {
+            //     console.log('eventshi');
+            //     e.preventDefault();
+            //     // if (validateFirstTab()) {
+            //         if(currentTab === 0) {
+            //             currentTab = 1;
+            //             showTabs();
+            //         } else if(currentTab === 1) {
+            //             currentTab = 2;
+            //             showTabs();
+            //         }
+            //     // }
+            // })
         } else if (flexDir === "column") {
             employeeHeader.style.display = 'block';
             laptopHeader.style.display = 'none';
@@ -108,7 +123,12 @@ function showTabs() {
             laptopHeader.style.display = 'block';
 
             employeeHeader.style.borderBottom = 'none';
-            laptopHeader.style.borderBottom = '2px solid #000'
+            laptopHeader.style.borderBottom = '2px solid #000';
+
+            laptopHeader.addEventListener('click', () => {
+                currentTab = 0; 
+                showTabs();
+            })
         } else if (flexDir === "column") {
             employeeHeader.style.display = 'none';
             laptopHeader.style.display = 'block';
@@ -299,3 +319,6 @@ function populateForm(formData) {
     }
 }
 
+function goToLandingPage() {
+    location.href = "index.html";
+}
