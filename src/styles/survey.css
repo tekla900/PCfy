@@ -194,6 +194,7 @@ form {
     cursor: pointer;
     margin: 0 auto; 
     margin-bottom: 120px;
+    position: relative;
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
@@ -210,6 +211,10 @@ form {
     gap: 30px;
     align-items: center;
     justify-content: center;
+}
+
+.file-div h3:nth-of-type(3) {
+    display: none;
 }
 
 .file-div h3:nth-of-type(2) {
@@ -230,14 +235,15 @@ form {
     }
     
 
-    .file-div h3:nth-of-type(2) {
+    .file-div h3:nth-of-type(3) {
+        display: block;
         background-color: #62A1EB;
         color: white;
         padding: 18px 60px;
         border-radius: 8px;
     }
 
-    .file-div i {
+    .file-div i, .file-div h3:nth-of-type(2) {
         display: none;
     }
 
@@ -286,8 +292,6 @@ label[for=second-hand]{
     justify-content: flex-start;
     gap: 63px;
 }
-
-
 
 .suc-upload {
     justify-content: space-between; 

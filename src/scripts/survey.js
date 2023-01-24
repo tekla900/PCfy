@@ -257,7 +257,9 @@ function validateFirstTab() {
 // FILE UPLOAD
 fileInput.addEventListener("change", function() {
     var file = this.files[0];
-    if (file) {
+    if (file && file['type'].split('/')[0] === 'image') {
+        console.log(file['type'].split('/')[0] === 'image');
+        console.log(file['type']);
         let reader = new FileReader();
         reader.onload = function() {
             document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
@@ -274,9 +276,21 @@ fileInput.addEventListener("change", function() {
         spans[1].textContent = file.size + ' mb';
 
         div.style.display = "flex";
+    } else {
+        const uploadBtn = document.querySelector('.upload-btn');
+        document.querySelector('.file-div .blue').style.color = "#E52F2F";
+        console.log("as");
+        uploadBtn.style.borderColor = "border: 2px solid #E52F2F"
+
+        uploadBtn.style.background = "#FFF1F1"
     }
 });
 
+
+// CHECK IF UPLOADED FILE IS AN IMAGE
+function isFileImage(file) {
+    return file && file['type'].split('/')[0] === 'image';
+}
 
 // formData.append('laptop_image', fileInput.files[0], "img.jpeg");
 
