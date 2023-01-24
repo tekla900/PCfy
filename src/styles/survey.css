@@ -308,3 +308,8 @@ label[for=second-hand]{
 .fa-sharp.fa-solid.fa-circle-check.fa-lg {
     color: #BED918;
 }
+
+.fa-solid.fa-triangle-exclamation {
+    display: none;
+    color: #C9CB52;
+}

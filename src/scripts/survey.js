@@ -278,9 +278,11 @@ fileInput.addEventListener("change", function() {
         div.style.display = "flex";
     } else {
         const uploadBtn = document.querySelector('.upload-btn');
+        const icon = document.querySelector('.fa-solid.fa-triangle-exclamation');
+
+        icon.style.display = "block";
         document.querySelector('.file-div .blue').style.color = "#E52F2F";
-        console.log("as");
-        uploadBtn.style.borderColor = "border: 2px solid #E52F2F"
+        uploadBtn.style.borderColor = "#E52F2F"
 
         uploadBtn.style.background = "#FFF1F1"
     }
