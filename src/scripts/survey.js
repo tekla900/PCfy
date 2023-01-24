@@ -6,6 +6,11 @@ const prevBtn = document.querySelector('.prev-btn');
 const header = document.querySelector('.position-div');
 const tabs = document.querySelectorAll('.tab');
 
+const employeeHeader = document.getElementById('employee-header');
+const laptopHeader = document.getElementById('laptop-header');
+const posSpan = document.getElementById('position-span');
+const posDiv = document.querySelector('.position-div');
+
 const selectBrand = document.getElementById('brands');
 const selectCPU = document.getElementById('cpus');
 
@@ -14,7 +19,7 @@ const formElements = form.elements;
 
 let currentTab = 0; 
 
-// adding options to team and position select inputs
+// FETCHING DATA
 fetch("https://pcfy.redberryinternship.ge/api/teams")
     .then(res => res.json())
     .then(res => {
@@ -27,7 +32,7 @@ fetch("https://pcfy.redberryinternship.ge/api/teams")
     })
     .catch(error => console.log(error));
 
-// enabling position choosing after team is chosen
+
 selectTeam.addEventListener('change', () => {
     fetch("https://pcfy.redberryinternship.ge/api/positions")
     .then(response => response.json())
@@ -37,7 +42,6 @@ selectTeam.addEventListener('change', () => {
         // Clear the options in the selectPosition element
         selectPosition.innerHTML = "";
 
-        // Add the filtered positions as options in the selectPosition element
         positions.forEach(position => {
             const option = document.createElement("option");
             option.value = position.id;
@@ -48,7 +52,6 @@ selectTeam.addEventListener('change', () => {
     });
 });
 
-// adding options to brand and cpu select inputs
 fetch("https://pcfy.redberryinternship.ge/api/brands")
     .then(res => res.json())
     .then(res => {
@@ -62,23 +65,20 @@ fetch("https://pcfy.redberryinternship.ge/api/brands")
     .catch(error => console.log(error));
 
 fetch("https://pcfy.redberryinternship.ge/api/cpus")
-.then(res => res.json())
-.then(res => {
-    res.data.forEach(el => {
-        const option = document.createElement('option');
-        option.value = el.id;
-        option.text = el.name;
-        selectCPU.appendChild(option);
-    });
-})
-.catch(error => console.log(error));
+    .then(res => res.json())
+    .then(res => {
+        res.data.forEach(el => {
+            const option = document.createElement('option');
+            option.value = el.id;
+            option.text = el.name;
+            selectCPU.appendChild(option);
+        });
+    })
+    .catch(error => console.log(error));
 
 
-const employeeHeader = document.getElementById('employee-header');
-const laptopHeader = document.getElementById('laptop-header');
-const posSpan = document.getElementById('position-span');
-const posDiv = document.querySelector('.position-div');
 
+// NAVIGATION
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
     if(currentTab === 0) {
@@ -146,24 +146,31 @@ function showTabs() {
         
         
         nextBtn.type = "submit";
-    } else if(currentTab === 2) {
-        nextBtn.type = "submit";
-    }
+    } 
+    // else if(currentTab === 2) {
+    //     nextBtn.type = "submit";
+    // }
 }
 
+function goToLandingPage() {
+    location.href = "index.html";
+}
 
-// validation
-
+// EVENT LISTENERS
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     // if (validateFirstTab()) {
         if(currentTab === 0) {
             currentTab = 1;
             showTabs();
-        } else if(currentTab === 1) {
-            currentTab = 2;
-            showTabs();
+        } else if (currentTab === 1) {
+            nextBtn.type = "submit";
+            console.log(nextBtn.type);
         }
+        // else if(currentTab === 1) {
+        //     currentTab = 2;
+        //     showTabs();
+        // }
     // }
 })
 
@@ -171,6 +178,8 @@ prevBtn.addEventListener('click', () => {
     currentTab = 0; 
     showTabs();
 })
+
+// VALIDATION
 
 function validateSelects(select) {
     if (select.value === '') {
@@ -181,7 +190,6 @@ function validateSelects(select) {
         return true;
     }
 }
-
 
 function validateLaptopName() {
     const input = document.getElementById('laptopName');
@@ -246,18 +254,26 @@ function validateFirstTab() {
 }
 
 
+// FILE UPLOAD
 fileInput.addEventListener("change", function() {
     var file = this.files[0];
     if (file) {
-        var reader = new FileReader();
+        let reader = new FileReader();
         reader.onload = function() {
             document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
             document.querySelector(".upload-btn").style.backgroundSize = "contain";
             document.querySelector('.file-div').style.display = 'none';
         };
         reader.readAsDataURL(file);
-        console.log("Uploaded file name: " + file.name);
-        console.log("Uploaded file size: " + file.size + " bytes");
+
+        const div = document.querySelector('.suc-upload');
+
+        const spans = div.querySelectorAll('span');
+
+        spans[0].textContent = file.name + ", ";
+        spans[1].textContent = file.size + ' mb';
+
+        div.style.display = "flex";
     }
 });
 
@@ -265,20 +281,28 @@ fileInput.addEventListener("change", function() {
 // formData.append('laptop_image', fileInput.files[0], "img.jpeg");
 
 
-form.onsubmit = () => console.log('yay');
+form.onsubmit = () => {
+    const formData = new FormData(form);
+    console.log('yay')
+    console.log({formData});
+};
+
+form.addEventListener("submit", () => console.log("ay"));
+
+// custom icon for radio button
+// var radios = document.querySelectorAll('input[name=condition]');
+// var icons = document.querySelectorAll('#radio-check');
+// for (var i = 0; i < radios.length; i++) {
+//     radios[i].addEventListener('change', function() {
+//         // for (var j = 0; j < icons.length; j++) {
+//         //     icons[j].style.display = 'none';
+//         // }
+//         this.parentNode.querySelector('i').style.display = 'block';
+//     });
+// }
 
 
-var radios = document.querySelectorAll('input[name=condition]');
-var icons = document.querySelectorAll('#radio-check');
-for (var i = 0; i < radios.length; i++) {
-    radios[i].addEventListener('change', function() {
-        // for (var j = 0; j < icons.length; j++) {
-        //     icons[j].style.display = 'none';
-        // }
-        this.parentNode.querySelector('i').style.display = 'block';
-    });
-}
-
+// STORING INPUT DATA IN LOCALSTORAGE
 for (let i = 0; i < formElements.length; i++) {
     let element = formElements[i];
     if (element.name) {
@@ -319,6 +343,36 @@ function populateForm(formData) {
     }
 }
 
-function goToLandingPage() {
-    location.href = "index.html";
-}
+
+// async function handleFormSubmit(event) {
+// 	event.preventDefault();
+
+// 	const url = form.action;
+
+// 	try {
+// 		const formData = new FormData(form);
+//     formData.append('token', 'ca421d1579a320984bc855b2200566e7');
+//     formData.append('team_id', Number(teamsSelect.options[teamsSelect.selectedIndex].dataset.teamid));
+//     formData.append('position_id', Number(posSelect.options[posSelect.selectedIndex].dataset.posid));
+//     formData.append('laptop_image', fileInput.files[0], "img.jpeg");
+//     formData.append('laptop_brand_id', Number(selectBrand.options[selectBrand.selectedIndex].dataset.brand_id));
+//     formData.delete('teams');
+//     formData.delete('positions');
+
+//     const response = await fetch(url, {
+//       method: 'POST',
+//       body: formData,
+//     }).catch(error => console.log(error));
+
+//     if (!response.ok) {
+//       		const errorMessage = await response.text();
+//       		throw new Error(errorMessage);
+//     } else {
+//       popUpPage();
+//     }
+
+// 	} catch (error) {
+// 		console.error(error);
+// 	}
+// }
+

@@ -144,6 +144,13 @@ select.error {
     border: 1.8px solid var(--error);
 }
 
+.medium {
+    font-size: 18px;
+}
+
+.gray-span {
+    color: #5F5F5F;
+}
 /* .checkboxes div {
     position: relative;
 }

@@ -193,6 +193,7 @@ form {
     font-size: 1.2em;
     cursor: pointer;
     margin: 0 auto; 
+    margin-bottom: 120px;
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
@@ -287,3 +288,17 @@ label[for=second-hand]{
 }
 
 
+
+.suc-upload {
+    justify-content: space-between; 
+    gap: 18px; 
+    position: absolute; 
+    bottom: -105px; 
+    left: 0;
+    width: 100%;
+    display: none;
+}
+
+.fa-sharp.fa-solid.fa-circle-check.fa-lg {
+    color: #BED918;
+}
