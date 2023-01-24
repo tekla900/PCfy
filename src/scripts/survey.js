@@ -78,81 +78,105 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
 
 
 // NAVIGATION
+
+// Tab display functions
+function displayTab1() {
+    employeeHeader.style.display = 'block';
+    laptopHeader.style.display = 'block';
+
+    employeeHeader.style.borderBottom = '2px solid #000';
+    laptopHeader.style.borderBottom = 'none';
+
+    posSpan.textContent = '1/2';
+
+    tabs[0].style.display = 'flex';
+    tabs[1].style.display = 'none';
+
+    prevBtn.style.visibility = 'hidden';
+    nextBtn.textContent = 'შემდეგი';
+}
+
+function displayTab2() {
+    employeeHeader.style.display = 'block';
+    laptopHeader.style.display = 'block';
+
+    employeeHeader.style.borderBottom = 'none';
+    laptopHeader.style.borderBottom = '2px solid #000';
+
+    posSpan.textContent = '2/2';
+
+    tabs[0].style.display = 'none';
+    tabs[1].style.display = 'flex';
+
+    prevBtn.style.visibility = 'visible';
+    nextBtn.textContent = 'დამახსოვრება';
+    nextBtn.type = "submit";
+}
+
+// Header display functions
+function displayHeadersRow() {
+    employeeHeader.style.display = 'block';
+    laptopHeader.style.display = 'block';
+}
+
+function displayHeadersColumn() {
+    if (currentTab === 0) {
+        employeeHeader.style.display = 'block';
+        laptopHeader.style.display = 'none';
+    } else {
+        employeeHeader.style.display = 'none';
+        laptopHeader.style.display = 'block';
+    }
+}
+
+// Main function to show tabs
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
-    if(currentTab === 0) {
-        if (flexDir === "row") {
-            employeeHeader.style.display = 'block';
-            laptopHeader.style.display = 'block';
 
-            employeeHeader.style.borderBottom = '2px solid #000';
-            laptopHeader.style.borderBottom = 'none'
+    if (flexDir === "row") {
+        displayHeadersRow();
+    } else if (flexDir === "column") {
+        displayHeadersColumn();
+    }
 
-        } else if (flexDir === "column") {
-            employeeHeader.style.display = 'block';
-            laptopHeader.style.display = 'none';
-        }
-        
-        posSpan.textContent = '1/2';
-
-        tabs[0].style.display = 'flex';
-        tabs[1].style.display = 'none';
-
-        prevBtn.style.visibility = 'hidden';
-        nextBtn.textContent = 'შემდეგი';
-
-    } else if(currentTab === 1) {
-
-        if (flexDir === "row") {
-            employeeHeader.style.display = 'block';
-            laptopHeader.style.display = 'block';
-
-            employeeHeader.style.borderBottom = 'none';
-            laptopHeader.style.borderBottom = '2px solid #000';
-
-            laptopHeader.addEventListener('click', () => {
-                currentTab = 0; 
-                showTabs();
-            })
-        } else if (flexDir === "column") {
-            employeeHeader.style.display = 'none';
-            laptopHeader.style.display = 'block';
-        } 
-
-        posSpan.textContent = '2/2';
-
-        tabs[0].style.display = 'none';
-        tabs[1].style.display = 'flex';
-
-        prevBtn.style.visibility = 'visible';
-        nextBtn.textContent = 'დამახსოვრება';
-        
-        nextBtn.type = "submit";
-    } 
+    if (currentTab === 0) {
+        displayTab1();
+    } else if (currentTab === 1) {
+        displayTab2();
+    }
 }
 
-function goToLandingPage() {
-    location.href = "index.html";
-}
-
-// EVENT LISTENERS
+// Event listeners
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
     if (validateFirstTab()) {
-        if(currentTab === 0) {
+        if (currentTab === 0) {
             currentTab = 1;
             showTabs();
         } else if (currentTab === 1) {
             nextBtn.type = "submit";
-            console.log(nextBtn.type);
         }
     }
+});
+
+laptopHeader.addEventListener('click', () => {
+    currentTab = 1;
+    showTabs();
+});
+
+employeeHeader.addEventListener('click', () => {
+    currentTab = 0;
+    showTabs();
 })
 
 prevBtn.addEventListener('click', () => {
-    currentTab = 0; 
+    currentTab = 0;
     showTabs();
-})
+});
+
+function goToLandingPage() {
+    location.href = "index.html";
+}
 
 // VALIDATION
 
