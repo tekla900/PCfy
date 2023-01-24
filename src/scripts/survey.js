@@ -77,7 +77,6 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
     .catch(error => console.log(error));
 
 
-
 // NAVIGATION
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
@@ -89,20 +88,6 @@ function showTabs() {
             employeeHeader.style.borderBottom = '2px solid #000';
             laptopHeader.style.borderBottom = 'none'
 
-            // console.log('eventamde');
-            // laptopHeader.addEventListener('click', () => {
-            //     console.log('eventshi');
-            //     e.preventDefault();
-            //     // if (validateFirstTab()) {
-            //         if(currentTab === 0) {
-            //             currentTab = 1;
-            //             showTabs();
-            //         } else if(currentTab === 1) {
-            //             currentTab = 2;
-            //             showTabs();
-            //         }
-            //     // }
-            // })
         } else if (flexDir === "column") {
             employeeHeader.style.display = 'block';
             laptopHeader.style.display = 'none';
@@ -132,8 +117,7 @@ function showTabs() {
         } else if (flexDir === "column") {
             employeeHeader.style.display = 'none';
             laptopHeader.style.display = 'block';
-        }
-        
+        } 
 
         posSpan.textContent = '2/2';
 
@@ -142,14 +126,9 @@ function showTabs() {
 
         prevBtn.style.visibility = 'visible';
         nextBtn.textContent = 'დამახსოვრება';
-
-        
         
         nextBtn.type = "submit";
     } 
-    // else if(currentTab === 2) {
-    //     nextBtn.type = "submit";
-    // }
 }
 
 function goToLandingPage() {
@@ -159,7 +138,7 @@ function goToLandingPage() {
 // EVENT LISTENERS
 nextBtn.addEventListener('click', (e) => {
     e.preventDefault();
-    // if (validateFirstTab()) {
+    if (validateFirstTab()) {
         if(currentTab === 0) {
             currentTab = 1;
             showTabs();
@@ -167,11 +146,7 @@ nextBtn.addEventListener('click', (e) => {
             nextBtn.type = "submit";
             console.log(nextBtn.type);
         }
-        // else if(currentTab === 1) {
-        //     currentTab = 2;
-        //     showTabs();
-        // }
-    // }
+    }
 })
 
 prevBtn.addEventListener('click', () => {
@@ -255,11 +230,11 @@ function validateFirstTab() {
 
 
 // FILE UPLOAD
-fileInput.addEventListener("change", function() {
-    var file = this.files[0];
+function upload() {
+    let file = this.files[0];
     if (file && file['type'].split('/')[0] === 'image') {
-        console.log(file['type'].split('/')[0] === 'image');
-        console.log(file['type']);
+        // console.log(file['type'].split('/')[0] === 'image');
+        // console.log(file['type']);
         let reader = new FileReader();
         reader.onload = function() {
             document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
@@ -286,24 +261,19 @@ fileInput.addEventListener("change", function() {
 
         uploadBtn.style.background = "#FFF1F1"
     }
-});
+}
 
+fileInput.addEventListener("change", () => upload());
+
+const reupload = document.getElementById('reupload');
+
+// reupload.addEventListener('click', )
 
 // CHECK IF UPLOADED FILE IS AN IMAGE
 function isFileImage(file) {
     return file && file['type'].split('/')[0] === 'image';
 }
 
-// formData.append('laptop_image', fileInput.files[0], "img.jpeg");
-
-
-form.onsubmit = () => {
-    const formData = new FormData(form);
-    console.log('yay')
-    console.log({formData});
-};
-
-form.addEventListener("submit", () => console.log("ay"));
 
 // custom icon for radio button
 // var radios = document.querySelectorAll('input[name=condition]');
@@ -338,7 +308,6 @@ window.addEventListener("load", function() {
 
 
 // Helper function to get the form data as an object
-
 function getFormData() {
     let formData = {};
     for (let i = 0; i < formElements.length; i++) {
@@ -359,6 +328,11 @@ function populateForm(formData) {
     }
 }
 
+// function handleFormSubmit() {
+//     const formData = new FormData(form);
+//     console.log("hi");
+//     console.log(formData);
+// }
 
 // async function handleFormSubmit(event) {
 // 	event.preventDefault();
@@ -392,3 +366,13 @@ function populateForm(formData) {
 // 	}
 // }
 
+// formData.append('laptop_image', fileInput.files[0], "img.jpeg");
+
+
+// form.onsubmit = () => {
+//     const formData = new FormData(form);
+//     console.log('yay')
+//     console.log({formData});
+// };
+
+// form.addEventListener("submit", () => handleFormSubmit());
