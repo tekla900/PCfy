@@ -132,12 +132,17 @@ form {
     flex-direction: column;
 }
 
-.button.row-ctn {
-    display: flex;
+.button.row-ctn  {
+    display: flex; 
     flex-direction: row;
     justify-content: space-between;
-    width: 878px;
-    margin: 0 auto;
+}
+
+@media only screen and (min-width: 880px) and (max-width: 1919px) {
+    .button.row-ctn {
+        width: 878px;
+        margin: 0 auto;
+    }
 }
 
 @media only screen and (min-width: 880px) and (max-width: 1919px) {
