@@ -22,8 +22,7 @@
     </header>
 
     <main>
-        <!-- <form action="https://pcfy.redberryinternship.ge/api/laptop/create" method="post"> -->
-            <form>
+        <form action="https://pcfy.redberryinternship.ge/api/laptop/create" method="post">
             <div class="tab">
                 <div class="row-ctn">
                     <div class="form-inputs">
@@ -34,20 +33,20 @@
         
                     <div class="form-inputs">
                         <label for="lastName">გვარი</label>
-                        <input type="text" name="lastName" id="lastName" placeholder="ბაგრატიონი"  minlength="2" pattern="[ა-ჰ]+" title="  ">
+                        <input type="text" name="surname" id="lastName" placeholder="ბაგრატიონი"  minlength="2" pattern="[ა-ჰ]+" title="  ">
                         <span class="info-span">მინიმუმ 2 სიმბოლო, ქართული ასოები</span>
                     </div>
                 </div>
                 
     
                 <div class="form-inputs">
-                    <select name="team" id="team" class="full-scr">
+                    <select name="team_id" id="team" class="full-scr">
                         <option value="">თიმი</option>
                     </select>
                 </div>
     
                 <div class="form-inputs">
-                    <select name="position" id="position" class="full-scr" disabled>
+                    <select name="position_id" id="position" class="full-scr" disabled>
                         <option value="">პოზიცია</option>
                     </select>
                 </div>
@@ -60,7 +59,7 @@
     
                 <div class="form-inputs">
                     <label for="number">ტელეფონის ნომერი</label>
-                    <input type="text" name="number" id="number" class="full-scr" placeholder="+995 599 999 999">
+                    <input type="text" name="phone_number" id="number" class="full-scr" placeholder="+995 599 999 999">
                     <span class="info-span">ქართული მობ-ნომრის ფორმატი</span>
                 </div>
             </div>
@@ -68,7 +67,7 @@
               
             <div class="second tab">
                 <label for="file-input" class="upload-btn">
-                    <input type="file" id="file-input" style="display: none;" required multiple="false">
+                    <input type="file" id="file-input" name="laptop_image" style="display: none;" required multiple="false">
                     <div class="file-div">
                         <i class="fa-solid fa-triangle-exclamation fa-2xl"></i>
                         <h3 class="blue">ჩააგდე ან ატვირთე ლეპტოპის ფოტო</h3>
@@ -89,12 +88,12 @@
                 <div class="row-ctn">
                     <div class="form-inputs">
                         <label for="laptopName">ლეპტოპის სახელი</label>
-                        <input type="text" name="laptopName" id="laptopName" placeholder="HP"  title="  ">
+                        <input type="text" name="laptop_name" id="laptopName" placeholder="HP"  title="  ">
                         <span class="info-span">ლათინური ასოები, ციფრები, !@#$%^&*()_+= </span>
                     </div>
     
                     <div class="form-inputs center-align">
-                        <select name="brands" id="brands">
+                        <select name="laptop_brand_id" id="brands">
                             <option value="">ლეპტოპის ბრენდი</option>
                         </select>
                     </div>
@@ -105,20 +104,20 @@
 
                 <div class="row-ctn">
                     <div class="form-inputs center-align">
-                        <select name="cpus" id="cpus" class="third">
+                        <select name="laptop_cpu" id="cpus" class="third">
                             <option value="">CPU</option>
                         </select>
                     </div>
 
                     <div class="form-inputs">
                         <label for="core">CPU-ს ბირთვი</label>
-                        <input type="text" name="core" id="core" class="third" placeholder="14" pattern="^[0-9]*$">
+                        <input type="text" name="laptop_cpu_cores" id="core" class="third" placeholder="14" pattern="^[0-9]*$">
                         <span class="info-span">მხოლოდ ციფრები</span>
                     </div>
 
                     <div class="form-inputs">
                         <label for="thread">CPU-ს ნაკადი</label>
-                        <input type="text" name="thread" id="thread" class="third" placeholder="365" pattern="^[0-9]*$">
+                        <input type="text" name="laptop_cpu_threads" id="thread" class="third" placeholder="365" pattern="^[0-9]*$">
                         <span class="info-span">მხოლოდ ციფრები</span>
                     </div>
                 </div>
@@ -126,7 +125,7 @@
                 <div class="row-ctn flex-start">
                     <div class="form-inputs">
                         <label for="ram">ლეპტოპის RAM (GB)</label>
-                        <input type="text" name="ram" id="ram" placeholder="16" pattern="^[0-9]*$">
+                        <input type="text" name="laptop_ram" id="ram" placeholder="16" pattern="^[0-9]*$">
                         <span class="info-span">მხოლოდ ციფრები</span>
                     </div>
 
@@ -134,12 +133,12 @@
                         <label>მეხსიერების ტიპი</label>
                         <div class="checkboxes">
                             <div class="">
-                                <input type="radio" id="SSD" name="memory" value="SSD">
+                                <input type="radio" id="SSD" name="laptop_hard_drive_type" value="SSD">
                                 <label for="SSD">SSD</label>
                             </div>
                             
                             <div class="">
-                                <input type="radio" id="HDD" name="memory" value="HDD">
+                                <input type="radio" id="HDD" name="laptop_hard_drive_type" value="HDD">
                                 <label for="HDD">HDD</label>
                             </div>  
                         </div>
@@ -151,12 +150,12 @@
                 <div class="row-ctn">
                     <div class="form-inputs">
                         <label for="date">შეძენის რიცხვი (არჩევითი)</label>
-                        <input type="date" name="date" id="date">
+                        <input type="date" name="laptop_purchase_date" id="date">
                     </div>
 
                     <div class="form-inputs">
                         <label for="price">ლეპტოპის ფასი</label>
-                        <input type="text" name="price" id="price" placeholder="0000" pattern="^[0-9]*$">
+                        <input type="text" name="laptop_price" id="price" placeholder="0000" pattern="^[0-9]*$">
                         <span class="info-span">მხოლოდ ციფრები</span>
                     </div>
                 </div>
@@ -165,13 +164,13 @@
                     <div class="checkboxes">
                         <div class="">
                             <!-- <i class="fa-sharp fa-solid fa-circle-check fa-lg radio-check"></i> -->
-                            <input type="radio" id="new" name="condition" value="new">
+                            <input type="radio" id="new" name="laptop_state" value="new">
                             <label for="new">ახალი</label>
                         </div>
                         
                         <div class="">
                             <!-- <i class="fa-sharp fa-solid fa-circle-check fa-lg radio-check"></i> -->
-                            <input type="radio" id="second-hand" name="condition" value="second-hand">
+                            <input type="radio" id="second-hand" name="laptop_state" value="used">
                             <label for="second-hand">მეორადი</label>
                         </div>  
                     </div>

@@ -19,6 +19,7 @@ const formElements = form.elements;
 
 let currentTab = 0; 
 
+
 // FETCHING DATA
 fetch("https://pcfy.redberryinternship.ge/api/teams")
     .then(res => res.json())
@@ -69,7 +70,7 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
     .then(res => {
         res.data.forEach(el => {
             const option = document.createElement('option');
-            option.value = el.id;
+            option.value = el.name;
             option.text = el.name;
             selectCPU.appendChild(option);
         });
@@ -82,7 +83,7 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
 // Tab display functions
 function displayTab1() {
     employeeHeader.style.display = 'block';
-    laptopHeader.style.display = 'block';
+    laptopHeader.style.display = 'none';
 
     employeeHeader.style.borderBottom = '2px solid #000';
     laptopHeader.style.borderBottom = 'none';
@@ -97,7 +98,7 @@ function displayTab1() {
 }
 
 function displayTab2() {
-    employeeHeader.style.display = 'block';
+    employeeHeader.style.display = 'none';
     laptopHeader.style.display = 'block';
 
     employeeHeader.style.borderBottom = 'none';
@@ -123,7 +124,7 @@ function displayHeadersColumn() {
     if (currentTab === 0) {
         employeeHeader.style.display = 'block';
         laptopHeader.style.display = 'none';
-    } else {
+    } else if (currentTab === 1) {
         employeeHeader.style.display = 'none';
         laptopHeader.style.display = 'block';
     }
@@ -148,15 +149,17 @@ function showTabs() {
 
 // Event listeners
 nextBtn.addEventListener('click', (e) => {
-    e.preventDefault();
-    if (validateFirstTab()) {
-        if (currentTab === 0) {
-            currentTab = 1;
-            showTabs();
-        } else if (currentTab === 1) {
-            nextBtn.type = "submit";
+    if (nextBtn.type != "submit") {
+        e.preventDefault();
+        if (validateFirstTab()) {
+            if (currentTab === 0) {
+                currentTab = 1;
+                showTabs();
+            } else if (currentTab === 1) {
+                nextBtn.type = "submit";
+            }
         }
-    }
+    }  
 });
 
 laptopHeader.addEventListener('click', () => {
@@ -177,6 +180,7 @@ prevBtn.addEventListener('click', () => {
 function goToLandingPage() {
     location.href = "index.html";
 }
+
 
 // VALIDATION
 
@@ -254,7 +258,8 @@ function validateFirstTab() {
 
 
 // FILE UPLOAD
-function upload() {
+
+fileInput.addEventListener("change", function() {
     let file = this.files[0];
     if (file && file['type'].split('/')[0] === 'image') {
         // console.log(file['type'].split('/')[0] === 'image');
@@ -285,9 +290,7 @@ function upload() {
 
         uploadBtn.style.background = "#FFF1F1"
     }
-}
-
-fileInput.addEventListener("change", () => upload());
+});
 
 const reupload = document.getElementById('reupload');
 
@@ -297,19 +300,6 @@ const reupload = document.getElementById('reupload');
 function isFileImage(file) {
     return file && file['type'].split('/')[0] === 'image';
 }
-
-
-// custom icon for radio button
-// var radios = document.querySelectorAll('input[name=condition]');
-// var icons = document.querySelectorAll('#radio-check');
-// for (var i = 0; i < radios.length; i++) {
-//     radios[i].addEventListener('change', function() {
-//         // for (var j = 0; j < icons.length; j++) {
-//         //     icons[j].style.display = 'none';
-//         // }
-//         this.parentNode.querySelector('i').style.display = 'block';
-//     });
-// }
 
 
 // STORING INPUT DATA IN LOCALSTORAGE
@@ -352,51 +342,72 @@ function populateForm(formData) {
     }
 }
 
-// function handleFormSubmit() {
-//     const formData = new FormData(form);
-//     console.log("hi");
-//     console.log(formData);
-// }
 
 // async function handleFormSubmit(event) {
-// 	event.preventDefault();
+//     event.preventDefault();
 
-// 	const url = form.action;
+//     const url = form.action;
+    
+//     const formData = getFormData();
+//     formData.token = 'ca421d1579a320984bc855b2200566e7';
+//     formData.laptop_image = fileInput.files[0];
 
-// 	try {
-// 		const formData = new FormData(form);
-//     formData.append('token', 'ca421d1579a320984bc855b2200566e7');
-//     formData.append('team_id', Number(teamsSelect.options[teamsSelect.selectedIndex].dataset.teamid));
-//     formData.append('position_id', Number(posSelect.options[posSelect.selectedIndex].dataset.posid));
-//     formData.append('laptop_image', fileInput.files[0], "img.jpeg");
-//     formData.append('laptop_brand_id', Number(selectBrand.options[selectBrand.selectedIndex].dataset.brand_id));
-//     formData.delete('teams');
-//     formData.delete('positions');
+//     console.log(formData);
+//     try {
+//         const response = await fetch(url, {
+//           method: 'POST',
+//           body: JSON.stringify(formData),
+//           headers: {
+//             'Content-Type': 'application/json'
+//           },
+//         }).catch(error => console.log(error));
 
-//     const response = await fetch(url, {
-//       method: 'POST',
-//       body: formData,
-//     }).catch(error => console.log(error));
+//         if (!response.ok) {
+//             const errorMessage = await response.text();
+//             throw new Error(errorMessage);
+//         } else {
+//             console.log('okay');
+//         }
 
-//     if (!response.ok) {
-//       		const errorMessage = await response.text();
-//       		throw new Error(errorMessage);
-//     } else {
-//       popUpPage();
+//     } catch (error) {
+//         console.error(error);
 //     }
-
-// 	} catch (error) {
-// 		console.error(error);
-// 	}
 // }
 
-// formData.append('laptop_image', fileInput.files[0], "img.jpeg");
+async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const url = form.action;
+
+    const formData = getFormData();
+    const file = fileInput.files[0];
+    formData.token = 'ca421d1579a320984bc855b2200566e7';
+    const reader = new FileReader();
+
+    reader.readAsDataURL(file);
+    reader.onload = async function() {
+        formData.laptop_image = reader.result;
+        try {
+            const response = await fetch(url, {
+                method: 'POST',
+                body: JSON.stringify(formData),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                const errorMessage = await response.text();
+                throw new Error(errorMessage);
+            } else {
+                console.log('okay');
+            }
+
+        } catch (error) {
+            console.error(error);
+        }
+    }
+}
 
 
-// form.onsubmit = () => {
-//     const formData = new FormData(form);
-//     console.log('yay')
-//     console.log({formData});
-// };
-
-// form.addEventListener("submit", () => handleFormSubmit());
+form.addEventListener('submit', handleFormSubmit);

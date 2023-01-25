@@ -129,6 +129,7 @@ form {
 
 .row-ctn {
     display: flex; 
+    gap: 42px;
     flex-direction: column;
 }
 
