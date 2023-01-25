@@ -19,7 +19,6 @@ const formElements = form.elements;
 
 let currentTab = 0; 
 
-
 // FETCHING DATA
 fetch("https://pcfy.redberryinternship.ge/api/teams")
     .then(res => res.json())
@@ -181,7 +180,6 @@ function goToLandingPage() {
     location.href = "index.html";
 }
 
-
 // VALIDATION
 
 function validateSelects(select) {
@@ -338,7 +336,42 @@ function getFormData() {
 function populateForm(formData) {
     for (let key in formData) {
       let element = document.getElementsByName(key)[0];
-      element.value = formData[key];
+      if(!(element.tagName === 'INPUT' && element.type === 'file')) {
+        element.value = formData[key];
+      }
+      
+    }
+}
+
+async function handleFormSubmit(event) {
+    event.preventDefault();
+
+    const url = form.action;
+    const formData = new FormData(form);
+    // check if file input is not empty
+    if (fileInput.files.length > 0) {
+        // convert file to binary string
+        const reader = new FileReader();
+        reader.onload = function() {
+            const binaryString = reader.result;
+            formData.append('laptop_image', binaryString, "img.jpeg");
+        };
+        reader.readAsBinaryString(fileInput.files[0]);
+    }
+    try {
+        const response = await fetch(url, {
+            method: 'POST',
+            body: formData,
+        });
+
+        if (!response.ok) {
+            const errorMessage = await response.text();
+            throw new Error(errorMessage);
+        } else {
+            console.log('okay');
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
@@ -350,8 +383,14 @@ function populateForm(formData) {
     
 //     const formData = getFormData();
 //     formData.token = 'ca421d1579a320984bc855b2200566e7';
-//     formData.laptop_image = fileInput.files[0];
-
+//     let file = fileInput.files[0];
+//     let reader = new FileReader();
+//     reader.readAsDataURL(file);
+//     reader.onload = function() {
+//         formData.laptop_image= reader.result;
+//     }
+    
+//     console.log(formData.laptop_image);
 //     console.log(formData);
 //     try {
 //         const response = await fetch(url, {
@@ -373,41 +412,5 @@ function populateForm(formData) {
 //         console.error(error);
 //     }
 // }
-
-async function handleFormSubmit(event) {
-    event.preventDefault();
-
-    const url = form.action;
-
-    const formData = getFormData();
-    const file = fileInput.files[0];
-    formData.token = 'ca421d1579a320984bc855b2200566e7';
-    const reader = new FileReader();
-
-    reader.readAsDataURL(file);
-    reader.onload = async function() {
-        formData.laptop_image = reader.result;
-        try {
-            const response = await fetch(url, {
-                method: 'POST',
-                body: JSON.stringify(formData),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            });
-
-            if (!response.ok) {
-                const errorMessage = await response.text();
-                throw new Error(errorMessage);
-            } else {
-                console.log('okay');
-            }
-
-        } catch (error) {
-            console.error(error);
-        }
-    }
-}
-
 
 form.addEventListener('submit', handleFormSubmit);
