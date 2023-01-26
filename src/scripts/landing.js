@@ -5,3 +5,4 @@ function addNote() {
 function seeNotes() {
     location.href = "http://www.google.com";
 }
+
