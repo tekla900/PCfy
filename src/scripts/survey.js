@@ -369,7 +369,7 @@ async function handleFormSubmit(event) {
             const errorMessage = await response.text();
             throw new Error(errorMessage);
         } else {
-            console.log('okay');
+            popUpPage();
         }
     } catch (error) {
         console.error(error);
@@ -378,3 +378,11 @@ async function handleFormSubmit(event) {
 
 
 form.addEventListener('submit', handleFormSubmit);
+
+function popUpPage() {
+    const page = document.querySelector('.success');
+
+    page.style.display = 'flex';
+    form.style.display = 'none';
+    document.getElementById('survey-header').style.display = 'none';
+}
