@@ -250,7 +250,7 @@ function validateFirstTab() {
     if (!validateSelects(selectTeam)) return false;
     if (!validateSelects(selectPosition)) return false;
     if (!validateInputs('email', /^[^@]+@redberry.ge$/)) return false;
-    if (!validateInputs('number', /^\d{9}$/)) return false;
+    if (!validateInputs('number', /^(\+?995)?\d{9}$/)) return false;
     return true;
 }
 
@@ -260,8 +260,6 @@ function validateFirstTab() {
 fileInput.addEventListener("change", function() {
     let file = this.files[0];
     if (file && file['type'].split('/')[0] === 'image') {
-        // console.log(file['type'].split('/')[0] === 'image');
-        // console.log(file['type']);
         let reader = new FileReader();
         reader.onload = function() {
             document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
@@ -348,13 +346,16 @@ async function handleFormSubmit(event) {
 
     const url = form.action;
     const formData = new FormData(form);
+    formData.append('token', 'ca421d1579a320984bc855b2200566e7');
+
     // check if file input is not empty
     if (fileInput.files.length > 0) {
         // convert file to binary string
         const reader = new FileReader();
         reader.onload = function() {
             const binaryString = reader.result;
-            formData.append('laptop_image', binaryString, "img.jpeg");
+            let file = new File([binaryString], 'img.jpeg', {type: 'image/jpeg'});
+            formData.append('laptop_image', file);
         };
         reader.readAsBinaryString(fileInput.files[0]);
     }
@@ -375,42 +376,5 @@ async function handleFormSubmit(event) {
     }
 }
 
-
-// async function handleFormSubmit(event) {
-//     event.preventDefault();
-
-//     const url = form.action;
-    
-//     const formData = getFormData();
-//     formData.token = 'ca421d1579a320984bc855b2200566e7';
-//     let file = fileInput.files[0];
-//     let reader = new FileReader();
-//     reader.readAsDataURL(file);
-//     reader.onload = function() {
-//         formData.laptop_image= reader.result;
-//     }
-    
-//     console.log(formData.laptop_image);
-//     console.log(formData);
-//     try {
-//         const response = await fetch(url, {
-//           method: 'POST',
-//           body: JSON.stringify(formData),
-//           headers: {
-//             'Content-Type': 'application/json'
-//           },
-//         }).catch(error => console.log(error));
-
-//         if (!response.ok) {
-//             const errorMessage = await response.text();
-//             throw new Error(errorMessage);
-//         } else {
-//             console.log('okay');
-//         }
-
-//     } catch (error) {
-//         console.error(error);
-//     }
-// }
 
 form.addEventListener('submit', handleFormSubmit);
