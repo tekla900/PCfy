@@ -10,6 +10,11 @@
     --error: #E52F2F;
 }
 
+@font-face {
+    font-family: 'Helvetica Neue';
+    src: url(../fonts/HelveticaNeue.ttc);
+ }
+
 * {
     margin: 0;
     padding: 0;
