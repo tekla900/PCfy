@@ -16,7 +16,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptops?token=${token}`)
                 <div>
                     <p class="small">${el.user.name + " " + el.user.surname}</p>
                     <p class="medium">${el.laptop.name}</p>
-                    <a href="../laptop.html?${el.laptop.id}" class="small">მეტის ნახვა</a>
+                    <a href="./laptop.html?${el.laptop.id}" class="small">მეტის ნახვა</a>
                 </div>
             </div>
             `
