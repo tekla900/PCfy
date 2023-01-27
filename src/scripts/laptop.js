@@ -24,7 +24,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
             <div class="values">
                 <p class="small">${res.data.user.name + " " + res.data.user.surname}</p>
                 <p class="small">${res.data.user.team_id}</p>
-                <p class="small">${res.data.user.position_id}</p>
+                <p class="small">${getTeams(res.data.user.position_id)}</p>
                 <p class="small">${res.data.user.email}</p>
                 <p class="small">${res.data.user.phone_number}</p>
             </div>
@@ -71,6 +71,27 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         </div>
         `    
     })
+
+async function getTeams(id) {
+    let url = 'https://pcfy.redberryinternship.ge/api/teams';
+    fetch(url)
+    .then(res => res.json())
+    .then(res =>  {
+        let team = res.data.filter(each => each.id == id);
+        return team[0]['name'];
+    })
+}
+
+async function getPositions(id) {
+    let url = 'https://pcfy.redberryinternship.ge/api/positions';
+    fetch(url)
+    .then(res => res.json())
+    .then(res => 
+    {
+        let team = res.data.filter(each => each.id == id);
+        return team[0]['name'];
+    })
+}
 
 
 // NAVIGATION
