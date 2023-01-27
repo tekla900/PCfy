@@ -122,3 +122,39 @@ p.medium {
     }
 
 }
+
+main#laptop {
+    width: 358px;
+    margin: 0 auto;
+    margin-bottom: 44px;
+}
+
+.main-img {
+    width: 358px;
+    height: 191px;
+    margin-bottom: 29px;
+}
+
+.info {
+    display: flex;
+    gap: 61px;
+    line-height: 25px;
+}
+
+.bold {
+    font-weight: 500;
+}
+
+hr {
+    border: 0.6px solid #A5A5A5;
+    margin-top: 41px;
+    margin-bottom: 23px;
+}
+
+.values p {
+    color: #797979;
+}
+
+.keys {
+    width: 152px;
+}
