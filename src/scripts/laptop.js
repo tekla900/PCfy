@@ -71,3 +71,10 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         </div>
         `    
     })
+
+
+// NAVIGATION
+
+function goToList() {
+    location.href = 'laptops.html';
+}
