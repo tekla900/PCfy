@@ -3,6 +3,6 @@ function addNote() {
 }
 
 function seeNotes() {
-    location.href = "http://www.google.com";
+    location.href = "laptops.html";
 }
 

@@ -180,6 +180,10 @@ function goToLandingPage() {
     location.href = "index.html";
 }
 
+function seeNotes() {
+    location.href = "laptops.html";
+}
+
 // VALIDATION
 
 function validateSelects(select) {
@@ -321,10 +325,11 @@ window.addEventListener("load", function() {
 function getFormData() {
     let formData = {};
     for (let i = 0; i < formElements.length; i++) {
-      let element = formElements[i];
-      if (element.name) {
-        formData[element.name] = element.value;
-      }
+        
+        let element = formElements[i];
+        if (element.name) {
+            formData[element.name] = element.value;
+        }
     }
     return formData;
 }
@@ -332,12 +337,20 @@ function getFormData() {
   
 // Helper function to populate the form fields with data
 function populateForm(formData) {
+    // console.log(formData);
+
     for (let key in formData) {
-      let element = document.getElementsByName(key)[0];
-      if(!(element.tagName === 'INPUT' && element.type === 'file')) {
-        element.value = formData[key];
-      }
-      
+        // console.log({key});
+        let element = document.getElementsByName(key)[0];
+        // console.log({element});
+        // console.log(element);
+        if(!(element.tagName === 'INPUT' && element.type === 'file')) {
+        if(!(element.tagName === 'SELECT')) {
+            console.log(element.value)
+            element.value = Number(formData[key]);
+        }
+            element.value = formData[key];
+        }
     }
 }
 
@@ -380,12 +393,12 @@ async function handleFormSubmit(event) {
 form.addEventListener('submit', handleFormSubmit);
 
 function popUpPage() {
-    const page = document.querySelector('.success');
-    const body = document.querySelector('body');
-    const main = document.querySelector('main');
-    main.style.backgroundColor = '#4A4A4A';
-    body.style.backgroundColor = '#4A4A4A';
-    page.style.display = 'flex';
+    document.querySelectorAll('.success, main, body')
+        .forEach(elem => 
+            elem.style.backgroundColor = '#4A4A4A'
+        );
+    document.querySelector('.success').style.display = 'flex';
+    document.querySelector('.success').style.backgroundColor = 'white';
     form.style.display = 'none';
     document.getElementById('survey-header').style.display = 'none';
 }

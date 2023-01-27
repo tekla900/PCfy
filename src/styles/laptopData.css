@@ -1,0 +1,124 @@
+.laptop {
+    border: 1px solid #AED1EA;
+    border-radius: 10px;
+    background: #EAFAFF;
+    width: 358px;
+    height: 123px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+@media only screen and (min-width: 880px)  {
+    .laptop {
+        width: 563px;
+        height: 205px;
+        border-radius: 20px;
+    }
+}
+
+.laptop-img {
+    border-radius: 6px;
+    width: 164px;
+    height: 109px;
+}
+
+@media only screen and (min-width: 880px)  {
+    .laptop-img {
+        border-radius: 10px;
+        width: 266px;
+        height: 178px;
+    }
+}
+
+.small {
+    font-size: 14px;
+    font-weight: 500;
+    color: #2E2E2E;
+}
+
+
+
+a.small {
+    color: #4386A9;
+}
+
+@media only screen and (min-width: 880px)  {
+    .small {
+        font-size: 18px;
+    }
+    a.small {
+        font-size: 16px;
+    }
+}
+
+.flex.wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 26px;
+}
+
+p.medium {
+    margin-top: 8px;
+    margin-bottom: 11px;
+    font-weight: 400;
+}
+
+@media only screen and (min-width: 880px)  {
+    p.medium {
+        margin-top: 40px;
+        margin-bottom: 18px;
+    }
+}
+
+/* HEADER */
+/* might move this to main.css */
+#survey-header {
+    width: 100%;
+    background-color: var(--background-color);
+    height: 85px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-content: center;
+}
+
+.btn-div {
+    position: absolute;
+    top: 34px;
+    left: 16px;
+    color: var(--arrows);
+    cursor: pointer;
+}
+
+
+.position-div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+@media only screen and (min-width: 880px) {
+
+    .btn-div {
+        height: 53px;
+        width: 53px;
+        left: 70px;
+        top: 53px;
+        border-radius: 50%;
+        background-color: #D9D9D9;
+        display: grid;
+        place-items: center;
+    }
+    .position-div {
+        gap: 52px;
+        width: 878px;
+        margin: 0 auto;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+}
