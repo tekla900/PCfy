@@ -381,7 +381,10 @@ form.addEventListener('submit', handleFormSubmit);
 
 function popUpPage() {
     const page = document.querySelector('.success');
-
+    const body = document.querySelector('body');
+    const main = document.querySelector('main');
+    main.style.backgroundColor = '#4A4A4A';
+    body.style.backgroundColor = '#4A4A4A';
     page.style.display = 'flex';
     form.style.display = 'none';
     document.getElementById('survey-header').style.display = 'none';

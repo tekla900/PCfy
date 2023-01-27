@@ -178,15 +178,16 @@ select.error {
     align-items: center;
     gap: 160px;
     display: none;
+    background-color: white;
 }
 
 .success h3 {
     width: 164px;
-    font-style: normal;
     font-weight: 700;
     font-size: 22px;
     line-height: 39px;
     text-align: center;
+    color: #292929;
 }
 
 .success button:nth-of-type(2) {
@@ -197,4 +198,30 @@ select.error {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+@media only screen and (min-width: 880px) {
+    .success  {
+        width: 847px;
+        height: 537px;
+        margin: 0 auto;
+        margin-top: 270px;
+        border-radius: 8px;
+        gap: 79px;
+    }
+
+    .success button {
+        width:  297px;
+    }
+
+    .success button:nth-of-type(2) {
+        margin-top: 28px;
+    }
+
+    .success h3 {
+        width: 314px;
+        font-size: 25px;
+        line-height: 31px;
+    }
+    
 }
