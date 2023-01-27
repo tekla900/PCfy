@@ -9,9 +9,9 @@ const main = document.getElementById('laptop');
 fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
     .then(res => res.json())
     .then(async res => {
-        let teamName = await getTeams(res.data.user.team_id);
-        let positionName = await getPositions(res.data.user.position_id);
-        let brandsName = await getLaptopBrands(res.data.laptop.brand_id);
+        let teamName = await getInfo(res.data.user.team_id, 'teams');
+        let positionName = await getInfo(res.data.user.position_id, 'positions');
+        let brandsName = await getInfo(res.data.laptop.brand_id, 'brands');
         let laptopState = res.data.laptop.state == 'new' ? 'ახალი' : 'მეორადი';
 
         main.innerHTML = `
@@ -77,37 +77,12 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         `    
     })
 
-
-async function getTeams(id) {
-    let url = 'https://pcfy.redberryinternship.ge/api/teams';
+async function getInfo(id, info) {
+    let url = `https://pcfy.redberryinternship.ge/api/${info}`;
     let res = await fetch(url);
     let json = await res.json();
-    let team = json.data.filter(each => each.id == id);
-    return team[0]['name'];
-}
-
-
-async function getPositions(id) {
-    let url = 'https://pcfy.redberryinternship.ge/api/positions';
-    let res = await fetch(url);
-    let json = await res.json();
-    let positions = json.data.filter(each => each.id == id);
-    return positions[0]['name'];
-}
-
-async function getLaptopBrands(id) {
-    let url = 'https://pcfy.redberryinternship.ge/api/brands';
-    let res = await fetch(url);
-    let json = await res.json();
-    let brands = json.data.filter(each => each.id == id);
-    return brands[0]['name'];
-}
-
-async function getLaptopState(id) {
-    let res = await fetch(url);
-    let json = await res.json();
-    let brands = json.data.filter(each => each.id == id);
-    return brands[0]['name'];
+    let filtered = json.data.filter(each => each.id == id);
+    return filtered[0]['name'];
 }
 
 
