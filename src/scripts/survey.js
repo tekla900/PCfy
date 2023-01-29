@@ -292,10 +292,15 @@ fileInput.addEventListener("change", function() {
     }
 });
 
-const reupload = document.getElementById('reupload');
-
-// reupload.addEventListener('click', )
-
+// REUPLOAD
+document.getElementById("reupload").addEventListener("click", function() {
+    document.querySelector(".suc-upload").style.display = "none";
+    document.getElementById("file-input").value = "";
+    console.log(document.querySelector('.upload-btn'));
+    document.querySelector('.upload-btn').style.backgroundImage = "none";
+    document.querySelector('.file-div').style.display = 'flex';
+});
+  
 // CHECK IF UPLOADED FILE IS AN IMAGE
 function isFileImage(file) {
     return file && file['type'].split('/')[0] === 'image';
@@ -337,16 +342,11 @@ function getFormData() {
   
 // Helper function to populate the form fields with data
 function populateForm(formData) {
-    // console.log(formData);
 
     for (let key in formData) {
-        // console.log({key});
         let element = document.getElementsByName(key)[0];
-        // console.log({element});
-        // console.log(element);
         if(!(element.tagName === 'INPUT' && element.type === 'file')) {
         if(!(element.tagName === 'SELECT')) {
-            console.log(element.value)
             element.value = Number(formData[key]);
         }
             element.value = formData[key];

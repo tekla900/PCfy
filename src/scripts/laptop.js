@@ -15,47 +15,59 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         let laptopState = res.data.laptop.state == 'new' ? 'ახალი' : 'მეორადი';
 
         main.innerHTML = `
-        <img class="main-img" src="https://pcfy.redberryinternship.ge/${res.data.laptop.image}" alt="image of laptop">
+        <div class='row first'>
+            <img class="main-img" src="https://pcfy.redberryinternship.ge/${res.data.laptop.image}" alt="image of laptop">
 
-        <div class="user info">
-            <div class="keys">
-                <p class="small bold">სახელი:</p>
-                <p class="small bold">თიმი:</p>
-                <p class="small bold">პოზიცია:</p>
-                <p class="small bold">მეილი:</p>
-                <p class="small bold">ტელ. ნომერი:</p>
-            </div>
-    
-            <div class="values">
-                <p class="small">${res.data.user.name + " " + res.data.user.surname}</p>
-                <p class="small">${teamName}</p>
-                <p class="small">${positionName}</p>
-                <p class="small">${res.data.user.email}</p>
-                <p class="small">${res.data.user.phone_number}</p>
+            <div class="user info">
+                <div class="keys">
+                    <p class="small bold">სახელი:</p>
+                    <p class="small bold">თიმი:</p>
+                    <p class="small bold">პოზიცია:</p>
+                    <p class="small bold">მეილი:</p>
+                    <p class="small bold">ტელ. ნომერი:</p>
+                </div>
+        
+                <div class="values">
+                    <p class="small">${res.data.user.name + " " + res.data.user.surname}</p>
+                    <p class="small">${teamName}</p>
+                    <p class="small">${positionName}</p>
+                    <p class="small">${res.data.user.email}</p>
+                    <p class="small">${res.data.user.phone_number}</p>
+                </div>
             </div>
         </div>
 
         <hr>
 
         <div class="lap info">
-            <div class="keys">
-                <p class="small bold">ლეპტოპის სახელი:</p>
-                <p class="small bold">ლეპტოპის ბრენდი:</p>
-                <p class="small bold">RAM:</p>
-                <p class="small bold">მეხსიერების ტიპი:</p>
-                <p class="small bold">CPU:</p>
-                <p class="small bold">CPU-ს ბირთვი:</p>
-                <p class="small bold">CPU-ს ნაკადი:</p>
+            <div class="keys row gap">
+                <div>
+                    <p class="small bold">ლეპტოპის სახელი:</p>
+                    <p class="small bold">ლეპტოპის ბრენდი:</p>
+                    <p class="small bold">RAM:</p>
+                    <p class="small bold">მეხსიერების ტიპი:</p>
+                </div>
+
+                <div>
+                    <p class="small bold">CPU:</p>
+                    <p class="small bold">CPU-ს ბირთვი:</p>
+                    <p class="small bold">CPU-ს ნაკადი:</p>
+                </div>
             </div>
         
-            <div class="values">
-                <p class="small">${res.data.laptop.name}</p>
-                <p class="small">${brandsName}</p>
-                <p class="small">${res.data.laptop.ram}</p>
-                <p class="small">${res.data.laptop.hard_drive_type}</p>
-                <p class="small">${res.data.laptop.cpu.name}</p>
-                <p class="small">${res.data.laptop.cpu.cores}</p>
-                <p class="small">${res.data.laptop.cpu.threads}</p>
+            <div class="values row gap">
+                <div>
+                    <p class="small">${res.data.laptop.name}</p>
+                    <p class="small">${brandsName}</p>
+                    <p class="small">${res.data.laptop.ram}</p>
+                    <p class="small">${res.data.laptop.hard_drive_type}</p>
+                </div>
+
+                <div>
+                    <p class="small">${res.data.laptop.cpu.name}</p>
+                    <p class="small">${res.data.laptop.cpu.cores}</p>
+                    <p class="small">${res.data.laptop.cpu.threads}</p>
+                </div>
             </div>
         </div>
 

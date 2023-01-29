@@ -93,6 +93,11 @@ p.medium {
     cursor: pointer;
 }
 
+@media only screen and (min-width: 880px) {
+    #survey-header h3 {
+        font-size: 34px;
+    }   
+}
 
 .position-div {
     display: flex;
@@ -102,7 +107,6 @@ p.medium {
 }
 
 @media only screen and (min-width: 880px) {
-
     .btn-div {
         height: 53px;
         width: 53px;
@@ -120,13 +124,26 @@ p.medium {
         flex-direction: row;
         justify-content: center;
     }
-
 }
 
 main#laptop {
     width: 358px;
     margin: 0 auto;
     margin-bottom: 44px;
+}
+
+@media only screen and (min-width: 1180px) {
+    main#laptop  {
+        width: 1178px;
+    }
+
+    .row {
+        display: flex;
+    }
+
+    .gap {
+        gap: 250px;
+    }
 }
 
 .main-img {
@@ -155,6 +172,7 @@ hr {
     color: #797979;
 }
 
-.keys {
+/* .keys {
     width: 152px;
 }
+ */
