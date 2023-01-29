@@ -81,9 +81,6 @@ fetch("https://pcfy.redberryinternship.ge/api/cpus")
 
 // Tab display functions
 function displayTab1() {
-    employeeHeader.style.display = 'block';
-    laptopHeader.style.display = 'none';
-
     employeeHeader.style.borderBottom = '2px solid #000';
     laptopHeader.style.borderBottom = 'none';
 
@@ -97,9 +94,6 @@ function displayTab1() {
 }
 
 function displayTab2() {
-    employeeHeader.style.display = 'none';
-    laptopHeader.style.display = 'block';
-
     employeeHeader.style.borderBottom = 'none';
     laptopHeader.style.borderBottom = '2px solid #000';
 
@@ -133,11 +127,12 @@ function displayHeadersColumn() {
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
 
+    console.log({flexDir});
     if (flexDir === "row") {
         displayHeadersRow();
     } else if (flexDir === "column") {
         displayHeadersColumn();
-    }
+    } 
 
     if (currentTab === 0) {
         displayTab1();
@@ -161,9 +156,14 @@ nextBtn.addEventListener('click', (e) => {
     }  
 });
 
+
 laptopHeader.addEventListener('click', () => {
-    currentTab = 1;
-    showTabs();
+    if (validateFirstTab()) {
+        if (currentTab === 0) {
+            currentTab = 1;
+            showTabs();
+        } 
+    }
 });
 
 employeeHeader.addEventListener('click', () => {
@@ -296,7 +296,6 @@ fileInput.addEventListener("change", function() {
 document.getElementById("reupload").addEventListener("click", function() {
     document.querySelector(".suc-upload").style.display = "none";
     document.getElementById("file-input").value = "";
-    console.log(document.querySelector('.upload-btn'));
     document.querySelector('.upload-btn').style.backgroundImage = "none";
     document.querySelector('.file-div').style.display = 'flex';
 });
