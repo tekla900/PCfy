@@ -344,6 +344,8 @@ function isFileImage(file) {
 
 
 // STORING INPUT DATA IN LOCALSTORAGE
+
+
 for (let i = 0; i < formElements.length; i++) {
     let element = formElements[i];
     if (element.name) {
@@ -390,6 +392,39 @@ function populateForm(formData) {
         }
     }
 }
+
+// SAVE RADIO BUTTON VALUES
+const typeButtons = document.querySelectorAll('input[name="laptop_hard_drive_type"]');
+const stateButtons = document.querySelectorAll('input[name="laptop_state"]');
+
+typeButtons.forEach(function(radioButton) {
+radioButton.addEventListener('change', function() {
+    localStorage.setItem('selectedHardDriveType', radioButton.value);
+});
+});
+
+stateButtons.forEach(function(radioButton) {
+radioButton.addEventListener('change', function() {
+    localStorage.setItem('selectedState', radioButton.value);
+});
+});
+
+// Retrieve selected radio button value from local storage on page load and set the corresponding radio button as checked
+const selectedHardDriveType = localStorage.getItem('selectedHardDriveType');
+const selectedState = localStorage.getItem('selectedState');
+
+if (selectedHardDriveType) {
+    const selectedRadioButton = document.querySelector(`input[name="laptop_hard_drive_type"][value="${selectedHardDriveType}"]`);
+    selectedRadioButton.checked = true;
+}
+
+if (selectedState) {
+    const selectedRadioButton = document.querySelector(`input[name="laptop_state"][value="${selectedState}"]`);
+    selectedRadioButton.checked = true;
+}
+
+
+// SUBMIT
 
 async function handleFormSubmit(event) {
     event.preventDefault();
