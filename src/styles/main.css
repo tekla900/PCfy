@@ -30,7 +30,7 @@ h3 {
     color: var(--black);
 }
 
-@media only screen and (min-width: 390px) and (max-width: 1919px) {
+@media only screen and (min-width: 1919px)  {
     h3 {
         font-size: 20px;
     }
@@ -57,7 +57,7 @@ button {
     cursor: pointer;
 }
 
-@media only screen and (min-width: 390px) and (max-width: 1919px) {
+@media only screen and (min-width: 1919px)  {
     button {
         width: 387px;
     }
@@ -115,7 +115,7 @@ input:invalid {
     border-color: #E52F2F;
 }
 
-@media only screen and (min-width: 880px) and (max-width: 1919px) {
+@media only screen and (min-width: 1919px)  {
     .full-scr {
         width: 878px;
     }
@@ -138,12 +138,11 @@ select {
     background-color: var(--select);
 }
 
-@media only screen and (min-width: 880px) and (max-width: 1919px) {
+@media only screen and (min-width: 1919px)  {
     .full-scr {
         width: 878px;
     }
 }
-
 
 input.error {
     border-color: var(--error);
@@ -200,6 +199,7 @@ select.error {
     align-items: center;
 }
 
+/* @media only screen and (min-width: 1919px)  ??? */
 @media only screen and (min-width: 880px) {
     .success  {
         width: 847px;
