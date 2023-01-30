@@ -351,6 +351,16 @@ for (let i = 0; i < formElements.length; i++) {
     }
 }
 
+
+// Retrieve form data from local storage and populate the form fields when the page is loaded
+window.addEventListener("load", function() {
+    let formData = JSON.parse(localStorage.getItem("formData"));
+    if (formData) {
+      populateForm(formData);
+    }
+});
+
+
 // Helper function to get the form data as an object
 function getFormData() {
     let formData = {};
