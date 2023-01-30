@@ -116,10 +116,7 @@ selectTeam.addEventListener('change', () => {
 // NAVIGATION
 
 // Tab display functions
-function displayTab1() {
-    employeeHeader.style.borderBottom = '2px solid #000';
-    laptopHeader.style.borderBottom = 'none';
-
+function displayTab1() {  
     posSpan.textContent = '1/2';
 
     tabs[0].style.display = 'flex';
@@ -130,9 +127,6 @@ function displayTab1() {
 }
 
 function displayTab2() {
-    employeeHeader.style.borderBottom = 'none';
-    laptopHeader.style.borderBottom = '2px solid #000';
-
     posSpan.textContent = '2/2';
 
     tabs[0].style.display = 'none';
@@ -147,6 +141,14 @@ function displayTab2() {
 function displayHeadersRow() {
     employeeHeader.style.display = 'block';
     laptopHeader.style.display = 'block';
+
+    if (currentTab === 0) { 
+        employeeHeader.style.borderBottom = '2px solid #000';
+        laptopHeader.style.borderBottom = 'none';
+    } else if (currentTab === 1) {
+        employeeHeader.style.borderBottom = 'none';
+        laptopHeader.style.borderBottom = '2px solid #000';
+    }
 }
 
 function displayHeadersColumn() {
