@@ -13,7 +13,9 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         let positionName = await getInfo(res.data.user.position_id, 'positions');
         let brandsName = await getInfo(res.data.laptop.brand_id, 'brands');
         let laptopState = res.data.laptop.state == 'new' ? 'ახალი' : 'მეორადი';
-
+        let inputDate = res.data.laptop.purchase_date;
+        let convertedDate = convertDateFormat(inputDate);
+        
         main.innerHTML = `
         <div class='row first'>
             <img class="main-img" src="https://pcfy.redberryinternship.ge/${res.data.laptop.image}" alt="image of laptop">
@@ -40,6 +42,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         <hr>
 
         <div class="lap info">
+        <div>
             <div class="keys">
                 <p class="small bold">ლეპტოპის სახელი:</p>
                 <p class="small bold">ლეპტოპის ბრენდი:</p>
@@ -53,7 +56,8 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
                 <p class="small">${res.data.laptop.ram}</p>
                 <p class="small">${res.data.laptop.hard_drive_type}</p>
             </div>
-    
+            </div>
+            <div>
             <div class="keys">
                 <p class="small bold">CPU:</p>
                 <p class="small bold">CPU-ს ბირთვი:</p>
@@ -64,6 +68,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
                 <p class="small">${res.data.laptop.cpu.name}</p>
                 <p class="small">${res.data.laptop.cpu.cores}</p>
                 <p class="small">${res.data.laptop.cpu.threads}</p>
+            </div>
             </div>
         </div>
 
@@ -85,7 +90,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
             </div>
 
             <div class="values">
-                <p class="small">${res.data.laptop.purchase_date}</p>
+                <p class="small">${convertedDate}</p>
             </div>
         </div>
         `    
@@ -99,6 +104,10 @@ async function getInfo(id, info) {
     return filtered[0]['name'];
 }
 
+function convertDateFormat(dateStr) {
+    const dateParts = dateStr.split("-");
+    return `${dateParts[0]} / ${dateParts[1]} / ${dateParts[2]}`;
+}  
 
 
 // NAVIGATION
@@ -106,3 +115,4 @@ async function getInfo(id, info) {
 function goToList() {
     location.href = 'laptops.html';
 }
+
