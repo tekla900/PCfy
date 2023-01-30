@@ -101,7 +101,7 @@ window.onload = function() {
     .then(res => {
         res.data.forEach(el => {
             const option = document.createElement('option');
-            option.value = el.id;
+            option.value = el.name;
             option.text = el.name;
             selectCPU.appendChild(option);
         });
@@ -510,3 +510,7 @@ function popUpPage() {
     form.style.display = 'none';
     document.getElementById('survey-header').style.display = 'none';
 }
+
+// date validation 
+// const today = new Date().toISOString().split("T")[0];
+// document.querySelector("#date").setAttribute("max", today);
