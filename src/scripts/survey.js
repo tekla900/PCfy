@@ -36,6 +36,30 @@ window.onload = function() {
         const selectedTeam = localStorage.getItem('selectedTeam');
         if (selectedTeam) {
             selectTeam.value = selectedTeam;
+
+            fetch("https://pcfy.redberryinternship.ge/api/positions")
+            .then(response => response.json())
+            .then(res => {
+                // Filter out the positions that match the selected team
+                const positions = res.data.filter(position => position.team_id == selectTeam.value);
+                // Clear the options in the selectPosition element
+                selectPosition.innerHTML = "";
+        
+                positions.forEach(position => {
+                    const option = document.createElement("option");
+                    option.value = position.id;
+                    option.innerHTML = position.name;
+                    selectPosition.appendChild(option);
+                });
+        
+                const selectedPosition = localStorage.getItem('selectedPosition');
+                if (selectedPosition) {
+                    selectPosition.value = selectedPosition;
+                }
+
+                selectPosition.disabled = false;
+            })
+            .catch(error => console.log(error));
         }
     })
     .catch(error => console.log(error));
@@ -45,6 +69,9 @@ window.onload = function() {
         localStorage.setItem('selectedTeam', e.target.value);
     });
 
+    selectPosition.addEventListener('change', e => {
+        localStorage.setItem('selectedPosition', e.target.value);
+    });
 
     fetch("https://pcfy.redberryinternship.ge/api/brands")
     .then(res => res.json())
@@ -109,8 +136,10 @@ selectTeam.addEventListener('change', () => {
             option.innerHTML = position.name;
             selectPosition.appendChild(option);
         });
+
         selectPosition.disabled = false;
-    });
+    })
+    .catch(error => console.log(error));
 });
 
 // NAVIGATION
@@ -180,6 +209,7 @@ function showTabs() {
 
 // Event listeners
 nextBtn.addEventListener('click', (e) => {
+    console.log(currentTab);
     if (nextBtn.type != "submit") {
         e.preventDefault();
         if (validateFirstTab()) {
@@ -195,6 +225,8 @@ nextBtn.addEventListener('click', (e) => {
 
 
 laptopHeader.addEventListener('click', () => {
+    console.log(currentTab);
+
     if (validateFirstTab()) {
         if (currentTab === 0) {
             currentTab = 1;
@@ -204,11 +236,15 @@ laptopHeader.addEventListener('click', () => {
 });
 
 employeeHeader.addEventListener('click', () => {
+    console.log(currentTab);
+
     currentTab = 0;
     showTabs();
 })
 
 prevBtn.addEventListener('click', () => {
+    console.log(currentTab);
+
     currentTab = 0;
     showTabs();
 });
