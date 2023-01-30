@@ -19,8 +19,10 @@ const formElements = form.elements;
 
 let currentTab = 0; 
 
-// FETCHING DATA
-fetch("https://pcfy.redberryinternship.ge/api/teams")
+// FETCHING DATA & STORING TO LOCAL STORAGE
+
+window.onload = function() {
+    fetch("https://pcfy.redberryinternship.ge/api/teams")
     .then(res => res.json())
     .then(res => {
         res.data.forEach(el => {
@@ -29,9 +31,68 @@ fetch("https://pcfy.redberryinternship.ge/api/teams")
             option.text = el.name;
             selectTeam.appendChild(option);
         });
+
+        // check if there's a selected team in local storage
+        const selectedTeam = localStorage.getItem('selectedTeam');
+        if (selectedTeam) {
+            selectTeam.value = selectedTeam;
+        }
     })
     .catch(error => console.log(error));
 
+    // add an event listener to update local storage when the selected team changes
+    selectTeam.addEventListener('change', e => {
+        localStorage.setItem('selectedTeam', e.target.value);
+    });
+
+
+    fetch("https://pcfy.redberryinternship.ge/api/brands")
+    .then(res => res.json())
+    .then(res => {
+        res.data.forEach(el => {
+            const option = document.createElement('option');
+            option.value = el.id;
+            option.text = el.name;
+            selectBrand.appendChild(option);
+        });
+
+        // check if there's a selected team in local storage
+        const selectedBrand = localStorage.getItem('selectedBrand');
+        if (selectedBrand) {
+            selectBrand.value = selectedBrand;
+        }
+    })
+    .catch(error => console.log(error));
+
+    // add an event listener to update local storage when the selected team changes
+    selectBrand.addEventListener('change', e => {
+        localStorage.setItem('selectedBrand', e.target.value);
+    });
+
+    fetch("https://pcfy.redberryinternship.ge/api/cpus")
+    .then(res => res.json())
+    .then(res => {
+        res.data.forEach(el => {
+            const option = document.createElement('option');
+            option.value = el.id;
+            option.text = el.name;
+            selectCPU.appendChild(option);
+        });
+
+        // check if there's a selected team in local storage
+        const selectedCPU = localStorage.getItem('selectedCPU');
+        if (selectedCPU) {
+            selectCPU.value = selectedCPU;
+        }
+    })
+    .catch(error => console.log(error));
+
+    // add an event listener to update local storage when the selected team changes
+    selectCPU.addEventListener('change', e => {
+        localStorage.setItem('selectedCPU', e.target.value);
+    });
+
+    };
 
 selectTeam.addEventListener('change', () => {
     fetch("https://pcfy.redberryinternship.ge/api/positions")
@@ -51,31 +112,6 @@ selectTeam.addEventListener('change', () => {
         selectPosition.disabled = false;
     });
 });
-
-fetch("https://pcfy.redberryinternship.ge/api/brands")
-    .then(res => res.json())
-    .then(res => {
-        res.data.forEach(el => {
-            const option = document.createElement('option');
-            option.value = el.id;
-            option.text = el.name;
-            selectBrand.appendChild(option);
-        });
-    })
-    .catch(error => console.log(error));
-
-fetch("https://pcfy.redberryinternship.ge/api/cpus")
-    .then(res => res.json())
-    .then(res => {
-        res.data.forEach(el => {
-            const option = document.createElement('option');
-            option.value = el.name;
-            option.text = el.name;
-            selectCPU.appendChild(option);
-        });
-    })
-    .catch(error => console.log(error));
-
 
 // NAVIGATION
 
@@ -127,12 +163,11 @@ function displayHeadersColumn() {
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
 
-    console.log({flexDir});
     if (flexDir === "row") {
         displayHeadersRow();
     } else if (flexDir === "column") {
         displayHeadersColumn();
-    } 
+    }
 
     if (currentTab === 0) {
         displayTab1();
@@ -315,15 +350,6 @@ for (let i = 0; i < formElements.length; i++) {
       });
     }
 }
-
-// Retrieve form data from local storage and populate the form fields when the page is loaded
-window.addEventListener("load", function() {
-    let formData = JSON.parse(localStorage.getItem("formData"));
-    if (formData) {
-      populateForm(formData);
-    }
-});
-
 
 // Helper function to get the form data as an object
 function getFormData() {
