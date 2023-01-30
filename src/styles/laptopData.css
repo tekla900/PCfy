@@ -83,6 +83,7 @@ p.medium {
     justify-content: center;
     flex-wrap: wrap;
     align-content: center;
+    margin-top: 20px;
 }
 
 .btn-div {
@@ -126,15 +127,21 @@ p.medium {
     }
 }
 
+main#laptops  {
+    margin-top: 97px;
+}
+
 main#laptop {
     width: 358px;
     margin: 0 auto;
     margin-bottom: 44px;
+    margin-top: 33px;
 }
 
 @media only screen and (min-width: 1180px) {
     main#laptop  {
         width: 1178px;
+        margin-top: 84px;
     }
 
     .row {
