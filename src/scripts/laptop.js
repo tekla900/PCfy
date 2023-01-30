@@ -40,34 +40,30 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         <hr>
 
         <div class="lap info">
-            <div class="keys row gap">
-                <div>
-                    <p class="small bold">ლეპტოპის სახელი:</p>
-                    <p class="small bold">ლეპტოპის ბრენდი:</p>
-                    <p class="small bold">RAM:</p>
-                    <p class="small bold">მეხსიერების ტიპი:</p>
-                </div>
-
-                <div>
-                    <p class="small bold">CPU:</p>
-                    <p class="small bold">CPU-ს ბირთვი:</p>
-                    <p class="small bold">CPU-ს ნაკადი:</p>
-                </div>
+            <div class="keys">
+                <p class="small bold">ლეპტოპის სახელი:</p>
+                <p class="small bold">ლეპტოპის ბრენდი:</p>
+                <p class="small bold">RAM:</p>
+                <p class="small bold">მეხსიერების ტიპი:</p>
             </div>
-        
-            <div class="values row gap">
-                <div>
-                    <p class="small">${res.data.laptop.name}</p>
-                    <p class="small">${brandsName}</p>
-                    <p class="small">${res.data.laptop.ram}</p>
-                    <p class="small">${res.data.laptop.hard_drive_type}</p>
-                </div>
 
-                <div>
-                    <p class="small">${res.data.laptop.cpu.name}</p>
-                    <p class="small">${res.data.laptop.cpu.cores}</p>
-                    <p class="small">${res.data.laptop.cpu.threads}</p>
-                </div>
+            <div class="values">
+                <p class="small">${res.data.laptop.name}</p>
+                <p class="small">${brandsName}</p>
+                <p class="small">${res.data.laptop.ram}</p>
+                <p class="small">${res.data.laptop.hard_drive_type}</p>
+            </div>
+    
+            <div class="keys">
+                <p class="small bold">CPU:</p>
+                <p class="small bold">CPU-ს ბირთვი:</p>
+                <p class="small bold">CPU-ს ნაკადი:</p>
+            </div>
+
+            <div class="values">
+                <p class="small">${res.data.laptop.cpu.name}</p>
+                <p class="small">${res.data.laptop.cpu.cores}</p>
+                <p class="small">${res.data.laptop.cpu.threads}</p>
             </div>
         </div>
 
@@ -76,13 +72,19 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
         <div class="lap info sec">
             <div class="keys">
                 <p class="small bold">მდგომარეობა:</p>
-                <p class="small bold">ლეპტოპის ფასი:</p>
-                <p class="small bold">შეძენის რიცხვი:</p>
+                <p class="small bold">ლეპტოპის ფასი:</p>               
             </div>
 
             <div class="values">
                 <p class="small">${laptopState}</p>
                 <p class="small">${res.data.laptop.price}</p>
+            </div>
+
+            <div class="keys">
+                <p class="small bold">შეძენის რიცხვი:</p>
+            </div>
+
+            <div class="values">
                 <p class="small">${res.data.laptop.purchase_date}</p>
             </div>
         </div>

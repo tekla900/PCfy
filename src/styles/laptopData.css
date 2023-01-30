@@ -148,9 +148,7 @@ main#laptop {
         display: flex;
     }
 
-    .gap {
-        gap: 250px;
-    }
+    
 }
 
 .main-img {
