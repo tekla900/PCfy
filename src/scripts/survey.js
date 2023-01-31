@@ -1,9 +1,11 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
 const selectTeam = document.getElementById('team');
 const selectPosition = document.getElementById('position');
 const form = document.querySelector('form');
 const nextBtn = document.querySelector('.next-btn');
 const prevBtn = document.querySelector('.prev-btn');
-const header = document.querySelector('.position-div');
 const tabs = document.querySelectorAll('.tab');
 
 const employeeHeader = document.getElementById('employee-header');
@@ -14,7 +16,7 @@ const posDiv = document.querySelector('.position-div');
 const selectBrand = document.getElementById('brands');
 const selectCPU = document.getElementById('cpus');
 
-const fileInput = document.getElementById("file-input");
+const fileInput = document.getElementById('file-input');
 const formElements = form.elements;
 
 let currentTab = 0; 
@@ -22,47 +24,46 @@ let currentTab = 0;
 // FETCHING DATA & STORING TO LOCAL STORAGE
 
 window.onload = function() {
-    fetch("https://pcfy.redberryinternship.ge/api/teams")
-    .then(res => res.json())
-    .then(res => {
-        res.data.forEach(el => {
-            const option = document.createElement('option');
-            option.value = el.id;
-            option.text = el.name;
-            selectTeam.appendChild(option);
+    fetch('https://pcfy.redberryinternship.ge/api/teams')
+        .then(res => res.json())
+        .then(res => {
+            res.data.forEach(el => {
+                const option = document.createElement('option');
+                option.value = el.id;
+                option.text = el.name;
+                selectTeam.appendChild(option);
+            });
+
+            // check if there's a selected team in local storage
+            const selectedTeam = localStorage.getItem('selectedTeam');
+            if (selectedTeam) {
+                selectTeam.value = selectedTeam;
+                console.log(selectTeam.value);
+                fetch('https://pcfy.redberryinternship.ge/api/positions')
+                    .then(response => response.json())
+                    .then(res => {
+                        // Filter out the positions that match the selected team
+                        const positions = res.data.filter(position => position.team_id == selectTeam.value);
+                        // Clear the options in the selectPosition element
+                        selectPosition.innerHTML = '';
+                
+                        positions.forEach(position => {
+                            const option = document.createElement('option');
+                            option.value = position.id;
+                            option.innerHTML = position.name;
+                            selectPosition.appendChild(option);
+                        });
+                
+                        const selectedPosition = localStorage.getItem('selectedPosition');
+                        if (selectedPosition) {
+                            selectPosition.value = selectedPosition;
+                        }
+
+                        selectPosition.disabled = false;
+                    })
+                    .catch(error => console.log(error));
+            }
         });
-
-        // check if there's a selected team in local storage
-        const selectedTeam = localStorage.getItem('selectedTeam');
-        if (selectedTeam) {
-            selectTeam.value = selectedTeam;
-
-            fetch("https://pcfy.redberryinternship.ge/api/positions")
-            .then(response => response.json())
-            .then(res => {
-                // Filter out the positions that match the selected team
-                const positions = res.data.filter(position => position.team_id == selectTeam.value);
-                // Clear the options in the selectPosition element
-                selectPosition.innerHTML = "";
-        
-                positions.forEach(position => {
-                    const option = document.createElement("option");
-                    option.value = position.id;
-                    option.innerHTML = position.name;
-                    selectPosition.appendChild(option);
-                });
-        
-                const selectedPosition = localStorage.getItem('selectedPosition');
-                if (selectedPosition) {
-                    selectPosition.value = selectedPosition;
-                }
-
-                selectPosition.disabled = false;
-            })
-            .catch(error => console.log(error));
-        }
-    })
-    .catch(error => console.log(error));
 
     // add an event listener to update local storage when the selected team changes
     selectTeam.addEventListener('change', e => {
@@ -73,73 +74,73 @@ window.onload = function() {
         localStorage.setItem('selectedPosition', e.target.value);
     });
 
-    fetch("https://pcfy.redberryinternship.ge/api/brands")
-    .then(res => res.json())
-    .then(res => {
-        res.data.forEach(el => {
-            const option = document.createElement('option');
-            option.value = el.id;
-            option.text = el.name;
-            selectBrand.appendChild(option);
-        });
+    fetch('https://pcfy.redberryinternship.ge/api/brands')
+        .then(res => res.json())
+        .then(res => {
+            res.data.forEach(el => {
+                const option = document.createElement('option');
+                option.value = el.id;
+                option.text = el.name;
+                selectBrand.appendChild(option);
+            });
 
-        // check if there's a selected team in local storage
-        const selectedBrand = localStorage.getItem('selectedBrand');
-        if (selectedBrand) {
-            selectBrand.value = selectedBrand;
-        }
-    })
-    .catch(error => console.log(error));
+            // check if there's a selected team in local storage
+            const selectedBrand = localStorage.getItem('selectedBrand');
+            if (selectedBrand) {
+                selectBrand.value = selectedBrand;
+            }
+        })
+        .catch(error => console.log(error));
 
     // add an event listener to update local storage when the selected team changes
     selectBrand.addEventListener('change', e => {
         localStorage.setItem('selectedBrand', e.target.value);
     });
 
-    fetch("https://pcfy.redberryinternship.ge/api/cpus")
-    .then(res => res.json())
-    .then(res => {
-        res.data.forEach(el => {
-            const option = document.createElement('option');
-            option.value = el.name;
-            option.text = el.name;
-            selectCPU.appendChild(option);
-        });
+    fetch('https://pcfy.redberryinternship.ge/api/cpus')
+        .then(res => res.json())
+        .then(res => {
+            res.data.forEach(el => {
+                const option = document.createElement('option');
+                option.value = el.name;
+                option.text = el.name;
+                selectCPU.appendChild(option);
+            });
 
-        // check if there's a selected team in local storage
-        const selectedCPU = localStorage.getItem('selectedCPU');
-        if (selectedCPU) {
-            selectCPU.value = selectedCPU;
-        }
-    })
-    .catch(error => console.log(error));
+            // check if there's a selected team in local storage
+            const selectedCPU = localStorage.getItem('selectedCPU');
+            if (selectedCPU) {
+                selectCPU.value = selectedCPU;
+            }
+        })
+        .catch(error => console.log(error));
 
     // add an event listener to update local storage when the selected team changes
     selectCPU.addEventListener('change', e => {
         localStorage.setItem('selectedCPU', e.target.value);
     });
 
-    };
+};
 
 selectTeam.addEventListener('change', () => {
-    fetch("https://pcfy.redberryinternship.ge/api/positions")
-    .then(response => response.json())
-    .then(res => {
-        // Filter out the positions that match the selected team
-        const positions = res.data.filter(position => position.team_id == selectTeam.value);
-        // Clear the options in the selectPosition element
-        selectPosition.innerHTML = "";
+    fetch('https://pcfy.redberryinternship.ge/api/positions')
+        .then(response => response.json())
+        .then(res => {
+            // Filter out the positions that match the selected team
+            const positions = res.data.filter(position => position.team_id == selectTeam.value);
+            // Clear the options in the selectPosition element
+            selectPosition.innerHTML = '';
 
-        positions.forEach(position => {
-            const option = document.createElement("option");
-            option.value = position.id;
-            option.innerHTML = position.name;
-            selectPosition.appendChild(option);
-        });
+            positions.forEach(position => {
+                const option = document.createElement('ption');
+                option.value = position.id;
+                option.innerHTML = position.name;
+                selectPosition.appendChild(option);
+            });
 
-        selectPosition.disabled = false;
-    })
-    .catch(error => console.log(error));
+            selectPosition.disabled = false;
+        })
+        .catch(error => console.log(error));
 });
 
 // NAVIGATION
@@ -163,7 +164,7 @@ function displayTab2() {
 
     prevBtn.style.visibility = 'visible';
     nextBtn.textContent = 'დამახსოვრება';
-    nextBtn.type = "submit";
+    nextBtn.type = 'submit';
 }
 
 // Header display functions
@@ -194,9 +195,9 @@ function displayHeadersColumn() {
 function showTabs() {
     let flexDir = window.getComputedStyle(posDiv).flexDirection;
 
-    if (flexDir === "row") {
+    if (flexDir === 'row') {
         displayHeadersRow();
-    } else if (flexDir === "column") {
+    } else if (flexDir === 'column') {
         displayHeadersColumn();
     }
 
@@ -210,14 +211,14 @@ function showTabs() {
 // Event listeners
 nextBtn.addEventListener('click', (e) => {
     console.log(currentTab);
-    if (nextBtn.type != "submit") {
+    if (nextBtn.type != 'submit') {
         e.preventDefault();
         if (validateFirstTab()) {
             if (currentTab === 0) {
                 currentTab = 1;
                 showTabs();
             } else if (currentTab === 1) {
-                nextBtn.type = "submit";
+                nextBtn.type = 'submit';
             }
         }
     }  
@@ -240,7 +241,7 @@ employeeHeader.addEventListener('click', () => {
 
     currentTab = 0;
     showTabs();
-})
+});
 
 prevBtn.addEventListener('click', () => {
     console.log(currentTab);
@@ -250,11 +251,11 @@ prevBtn.addEventListener('click', () => {
 });
 
 function goToLandingPage() {
-    location.href = "index.html";
+    location.href = 'index.html';
 }
 
 function seeNotes() {
-    location.href = "laptops.html";
+    location.href = 'laptops.html';
 }
 
 // VALIDATION
@@ -334,13 +335,13 @@ function validateFirstTab() {
 
 // FILE UPLOAD
 
-fileInput.addEventListener("change", function() {
+fileInput.addEventListener('change', function() {
     let file = this.files[0];
     if (file && file['type'].split('/')[0] === 'image') {
         let reader = new FileReader();
         reader.onload = function() {
-            document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
-            document.querySelector(".upload-btn").style.backgroundSize = "cover";
+            document.querySelector('.upload-btn').style.backgroundImage = 'url(" + reader.result + ")';
+            document.querySelector('.upload-btn').style.backgroundSize = 'cover';
             document.querySelector('.file-div').style.display = 'none';
         };
         reader.readAsDataURL(file);
@@ -349,28 +350,28 @@ fileInput.addEventListener("change", function() {
 
         const spans = div.querySelectorAll('span');
 
-        spans[0].textContent = file.name + ", ";
+        spans[0].textContent = file.name + ', ';
         spans[1].textContent = file.size + ' mb';
 
-        div.style.display = "flex";
+        div.style.display = 'flex';
     } else {
         const uploadBtn = document.querySelector('.upload-btn');
         const icon = document.querySelector('.fa-solid.fa-triangle-exclamation');
 
-        icon.style.display = "block";
-        document.querySelector('.file-div .blue').style.color = "#E52F2F";
+        icon.style.display = 'block';
+        document.querySelector('.file-div .blue').style.color = '#E52F2F';
         document.getElementById('camera').style.display = 'none';
-        uploadBtn.style.borderColor = "#E52F2F";
+        uploadBtn.style.borderColor = '#E52F2F';
 
-        uploadBtn.style.background = "#FFF1F1";
+        uploadBtn.style.background = '#FFF1F1';
     }
 });
 
 // REUPLOAD
-document.getElementById("reupload").addEventListener("click", function() {
-    document.querySelector(".suc-upload").style.display = "none";
-    document.getElementById("file-input").value = "";
-    document.querySelector('.upload-btn').style.backgroundImage = "none";
+document.getElementById('reupload').addEventListener('click', function() {
+    document.querySelector('.suc-upload').style.display = 'none';
+    document.getElementById('file-input').value = '';
+    document.querySelector('.upload-btn').style.backgroundImage = 'none';
     document.querySelector('.file-div').style.display = 'flex';
 });
 
@@ -380,18 +381,18 @@ document.getElementById("reupload").addEventListener("click", function() {
 for (let i = 0; i < formElements.length; i++) {
     let element = formElements[i];
     if (element.name) {
-      element.addEventListener("input", function() {
-        localStorage.setItem("formData", JSON.stringify(getFormData()));
-      });
+        element.addEventListener('input', function() {
+            localStorage.setItem('formData', JSON.stringify(getFormData()));
+        });
     }
 }
 
 
 // Retrieve form data from local storage and populate the form fields when the page is loaded
-window.addEventListener("load", function() {
-    let formData = JSON.parse(localStorage.getItem("formData"));
+window.addEventListener('load', function() {
+    let formData = JSON.parse(localStorage.getItem('formData'));
     if (formData) {
-      populateForm(formData);
+        populateForm(formData);
     }
 });
 
@@ -416,9 +417,9 @@ function populateForm(formData) {
     for (let key in formData) {
         let element = document.getElementsByName(key)[0];
         if(!(element.tagName === 'INPUT' && element.type === 'file')) {
-        if(!(element.tagName === 'SELECT')) {
-            element.value = Number(formData[key]);
-        }
+            if(!(element.tagName === 'SELECT')) {
+                element.value = Number(formData[key]);
+            }
             element.value = formData[key];
         }
     }
@@ -429,15 +430,15 @@ const typeButtons = document.querySelectorAll('input[name="laptop_hard_drive_typ
 const stateButtons = document.querySelectorAll('input[name="laptop_state"]');
 
 typeButtons.forEach(function(radioButton) {
-radioButton.addEventListener('change', function() {
-    localStorage.setItem('selectedHardDriveType', radioButton.value);
-});
+    radioButton.addEventListener('change', function() {
+        localStorage.setItem('selectedHardDriveType', radioButton.value);
+    });
 });
 
 stateButtons.forEach(function(radioButton) {
-radioButton.addEventListener('change', function() {
-    localStorage.setItem('selectedState', radioButton.value);
-});
+    radioButton.addEventListener('change', function() {
+        localStorage.setItem('selectedState', radioButton.value);
+    });
 });
 
 // Retrieve selected radio button value from local storage on page load and set the corresponding radio button as checked

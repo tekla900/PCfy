@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-undef */
+
 const token = 'ca421d1579a320984bc855b2200566e7';
 
 // GETTING ID
@@ -30,7 +33,7 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
                 </div>
         
                 <div class="values">
-                    <p class="small">${res.data.user.name + " " + res.data.user.surname}</p>
+                    <p class="small">${res.data.user.name + ' ' + res.data.user.surname}</p>
                     <p class="small">${teamName}</p>
                     <p class="small">${positionName}</p>
                     <p class="small">${res.data.user.email}</p>
@@ -93,8 +96,8 @@ fetch(`https://pcfy.redberryinternship.ge/api/laptop/${id}?token=${token}`)
                 <p class="small">${convertedDate}</p>
             </div>
         </div>
-        `    
-    })
+        ` ;   
+    });
 
 async function getInfo(id, info) {
     let url = `https://pcfy.redberryinternship.ge/api/${info}`;
@@ -105,7 +108,7 @@ async function getInfo(id, info) {
 }
 
 function convertDateFormat(dateStr) {
-    const dateParts = dateStr.split("-");
+    const dateParts = dateStr.split('-');
     return `${dateParts[0]} / ${dateParts[1]} / ${dateParts[2]}`;
 }  
 
