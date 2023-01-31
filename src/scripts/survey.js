@@ -340,7 +340,7 @@ fileInput.addEventListener("change", function() {
         let reader = new FileReader();
         reader.onload = function() {
             document.querySelector(".upload-btn").style.backgroundImage = "url(" + reader.result + ")";
-            document.querySelector(".upload-btn").style.backgroundSize = "contain";
+            document.querySelector(".upload-btn").style.backgroundSize = "cover";
             document.querySelector('.file-div').style.display = 'none';
         };
         reader.readAsDataURL(file);
@@ -359,9 +359,10 @@ fileInput.addEventListener("change", function() {
 
         icon.style.display = "block";
         document.querySelector('.file-div .blue').style.color = "#E52F2F";
-        uploadBtn.style.borderColor = "#E52F2F"
+        document.getElementById('camera').style.display = 'none';
+        uploadBtn.style.borderColor = "#E52F2F";
 
-        uploadBtn.style.background = "#FFF1F1"
+        uploadBtn.style.background = "#FFF1F1";
     }
 });
 
@@ -372,15 +373,9 @@ document.getElementById("reupload").addEventListener("click", function() {
     document.querySelector('.upload-btn').style.backgroundImage = "none";
     document.querySelector('.file-div').style.display = 'flex';
 });
-  
-// CHECK IF UPLOADED FILE IS AN IMAGE
-function isFileImage(file) {
-    return file && file['type'].split('/')[0] === 'image';
-}
 
 
 // STORING INPUT DATA IN LOCALSTORAGE
-
 
 for (let i = 0; i < formElements.length; i++) {
     let element = formElements[i];
