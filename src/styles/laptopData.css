@@ -147,7 +147,6 @@ main#laptop {
     .row {
         display: flex;
     }
-
     
 }
 
@@ -177,7 +176,3 @@ hr {
     color: #797979;
 }
 
-/* .keys {
-    width: 152px;
-}
- */
