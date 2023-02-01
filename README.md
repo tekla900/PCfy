@@ -26,10 +26,10 @@ The design should be completed on two resolutions:
 
 ### Screenshots
 
-![](./screenshots/landing.png)
-![](./screenshots/survey-1.png)
-![](./screenshots/survey-2.png)
-![](./screenshots/list.png)
+![](./src/screenshots/landing.png)
+![](./src/screenshots/survey-1.png)
+![](./src/screenshots/survey-2.png)
+![](./src/screenshots/list.png)
 
 ### Links
 
