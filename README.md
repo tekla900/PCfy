@@ -5,7 +5,7 @@
 
 - [Overview](#overview)
   - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
+  - [Screenshots](#screenshots)
   - [Links](#links)
 - [My process](#my-process)
   - [Built with](#built-with)
@@ -24,9 +24,12 @@ The design should be completed on two resolutions:
 - Desktop (1920x1080)
 - Mobile (390x844 - IPhone 12 Pro)
 
-### Screenshot
+### Screenshots
 
-![](./screenshot.png)
+![](./screenshots/landing.png)
+![](./screenshots/survey-1.png)
+![](./screenshots/survey-2.png)
+![](./screenshots/list.png)
 
 ### Links
 
